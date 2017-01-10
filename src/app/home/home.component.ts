@@ -1,11 +1,15 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  //ViewChild
 } from '@angular/core';
 
 import { AppState } from '../app.service';
 import { Title } from './title';
 import { XLargeDirective } from './x-large';
+//import { AccordionDemoComponent } from './accord-test';
+//import { ADemo } from './ademo';
+
 
 @Component({
   // The selector is what angular internally uses
@@ -20,8 +24,11 @@ import { XLargeDirective } from './x-large';
   styleUrls: [ './home.component.css' ],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
   templateUrl: './home.component.html'
+  //template: '<ademo>demo</ademo>'
 })
 export class HomeComponent implements OnInit {
+
+  //@ViewChild(AccordionDemoComponent) demo: AccordionDemoComponent
   // Set our default values
   public localState = { value: '' };
   // TypeScript public modifiers
@@ -29,6 +36,14 @@ export class HomeComponent implements OnInit {
     public appState: AppState,
     public title: Title
   ) {}
+
+  /*ngAfterViewInit() {
+    this.update();
+  }
+
+  update() {
+    //this.demo.sendData();
+  }*/
 
   public ngOnInit() {
     console.log('hello `Home` component');
