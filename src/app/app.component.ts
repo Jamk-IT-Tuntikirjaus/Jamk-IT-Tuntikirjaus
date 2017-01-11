@@ -36,7 +36,7 @@ import { AppState } from './app.service';
         About
       </a>
     </nav>
-
+      <menu-object>Loading</menu-object>
     <main>
       <router-outlet></router-outlet>
     </main>

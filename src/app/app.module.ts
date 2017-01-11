@@ -1,3 +1,4 @@
+import { MaterialModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -35,6 +36,8 @@ import { AccordionModule } from 'ng2-bootstrap';
 //Komponentti sisään, muista declarata NgModule!
 import { ADemo } from './home/ademo';
 import { AccordionDemoComponent } from './home/accord-test';
+import { CardComponent } from './home/card';
+import { MenuComponent } from './menu';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -63,13 +66,16 @@ type StoreType = {
     NoContentComponent,
     XLargeDirective,
     AccordionDemoComponent,
-    ADemo
+    ADemo,
+    CardComponent,
+    MenuComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
     HttpModule,
     AccordionModule.forRoot(),
+    MaterialModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
