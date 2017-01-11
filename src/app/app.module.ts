@@ -29,12 +29,22 @@ import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
 
+//Sivun import
+//import { CalenderComponent } from './app/calender';
+
 //Moduuli sisään, muista import NgModule!
-import { AccordionModule } from 'ng2-bootstrap';
+import {
+  AccordionModule,
+  ModalModule,
+  ProgressbarModule
+} from 'ng2-bootstrap';
 
 //Komponentti sisään, muista declarata NgModule!
+import { Test } from './home/test';
 import { ADemo } from './home/ademo';
 import { AccordionDemoComponent } from './home/accord-test';
+import { ModalTestComponent } from './home/modaltest';
+import { ProgressbarDemoComponent } from './home/progressbar';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -62,14 +72,20 @@ type StoreType = {
     HomeComponent,
     NoContentComponent,
     XLargeDirective,
+    //CalenderComponent,
+    Test,
+    ADemo,
     AccordionDemoComponent,
-    ADemo
+    ModalTestComponent,
+    ProgressbarDemoComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
     HttpModule,
     AccordionModule.forRoot(),
+    ModalModule.forRoot(),
+    ProgressbarModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection

@@ -7,8 +7,9 @@ import { Component } from '@angular/core';
 })
 export class ADemo {
 
+  name;
   constructor() {
     //En tiiä miten vielä...
-    this.name = 'Max'
+    this.name = 'Max';
   }
 }
