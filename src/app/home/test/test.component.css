@@ -1,0 +1,24 @@
+.menu {
+  display: block;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  background-color: teal;
+  padding: 5px;
+  z-index: 1;
+}
+
+.menu a.menu-item {
+  align-items: center;
+  display: none;
+  background-color: darkgray;
+  padding: 5px 0 5px 0;
+}
+
+.menu:hover a.menu-item {
+  padding: 5px -2px 5px -2px;
+  display: block;
+}
+.menu:hover a.menu-item:hover {
+  background-color: gray;
+}
