@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HammerTestModule } from './hammer-test.module';
+import { AccordionModule } from 'ng2-bootstrap/accordion';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import {
   NgModule,
@@ -31,6 +31,7 @@ import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
 import { HammerTestComponent }   from './hammer-test';
+import { CourselistComponent } from './courselist';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -64,12 +65,14 @@ export class MyHammerConfig extends HammerGestureConfig  {
     HomeComponent,
     NoContentComponent,
     HammerTestComponent,
+    CourselistComponent,
     XLargeDirective
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
     HttpModule,
+    AccordionModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
