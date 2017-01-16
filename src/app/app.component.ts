@@ -40,6 +40,7 @@ import { AppState } from './app.service';
     <main>
       <router-outlet></router-outlet>
     </main>
+    <hammer-test>loading...</hammer-test>
 
     <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
 

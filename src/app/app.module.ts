@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HammerTestModule } from './hammer-test.module';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import {
   NgModule,
   ApplicationRef
@@ -28,6 +30,7 @@ import { HomeComponent } from './home';
 import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
+import { HammerTestComponent }   from './hammer-test';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -44,6 +47,12 @@ type StoreType = {
   disposeOldHosts: () => void
 };
 
+export class MyHammerConfig extends HammerGestureConfig  {
+  overrides = <any>{
+      'swipe': {velocity: 0.4, threshold: 20} // override default settings
+  }
+}
+
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
@@ -54,6 +63,7 @@ type StoreType = {
     AboutComponent,
     HomeComponent,
     NoContentComponent,
+    HammerTestComponent,
     XLargeDirective
   ],
   imports: [ // import Angular's modules
@@ -64,7 +74,11 @@ type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: MyHammerConfig
+    }
   ]
 })
 export class AppModule {
