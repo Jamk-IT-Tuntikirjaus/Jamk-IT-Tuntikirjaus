@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {
   NgModule,
-  ApplicationRef
+  ApplicationRef,
 } from '@angular/core';
 import {
   removeNgStyles,
@@ -48,6 +48,7 @@ import { ProgressbarDemoComponent } from './home/progressbar';
 
 //Projektissa käytettävät komponentit
 import { LoginModalComponent } from './home/login';
+import { CalenderComponent } from './home/calender';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -85,7 +86,8 @@ type StoreType = {
     ProgressbarDemoComponent,
 
     //Project componentit
-    LoginModalComponent
+    LoginModalComponent,
+    CalenderComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

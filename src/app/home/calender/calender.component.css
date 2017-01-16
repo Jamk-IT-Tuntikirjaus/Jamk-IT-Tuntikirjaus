@@ -1,0 +1,57 @@
+.calender {
+
+}
+
+.calender-header {
+  border-style: solid;
+  border-color: black;
+  border-width: 0 0 1px 1px;
+  margin: 5px;
+}
+
+.calender-day {
+  /* inline-block
+  Täyttää vain tarvittavan verran ja tavaraa voi olla vierekkäin riveissä.
+
+  */
+  display: inline-block;
+  padding: 5px;
+}
+
+.calender-weekday {
+  padding: 3px;
+  font-weight: bold;
+}
+
+.lecture-body {
+  /*Vastaa <- ja _ borderista*/
+  border-top-left-radius: 8px;
+  border-width: 0;
+  border-style: solid;
+  border-color: black;
+  border-left-width: 1px;
+  border-bottom-width: 1px;
+  margin: 5px;
+}
+
+.lecture-time {
+  /*Vastaa omasta ^ ja -> borderista*/
+  display: inline; /*piirtää suoraan riville*/
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  padding: 3px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.lecture-information {
+  /*
+  Vastaa ^, -> borderista
+  Vastaa myös laidan border väristä
+  */
+  padding: 3px;
+  text-align: center;
+  border-top: 1px solid black;
+  border-left: 15px solid red;
+  border-right: 1px solid black;
+}

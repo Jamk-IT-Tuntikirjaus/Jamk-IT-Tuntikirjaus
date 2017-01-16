@@ -1,0 +1,25 @@
+<h1>Calender</h1>
+<div class="calender">
+  <div class="calender-nav">
+    <!--button>Month</button-->
+    <div>Show schedule by week</div>
+    <button>Week</button>
+    <button>Day</button>
+  </div>
+  <div class="calender-day" *ngFor="let weekday of calender.week">
+    <div class="calender-header">
+      <div class="calender-weekday">{{ weekday | date:'EEEE dd.MM.y' }}</div>
+    </div>
+
+    <div class="lecture-body" *ngFor="let lecture of lectures">
+      <!-- Calender lectures -->
+      <div class="lecture-time">{{lecture.time.start}} - {{lecture.time.end}}</div>
+      <div class="lecture-information">
+        <!-- div jakaa tiedon hyvin eri riveille ja sillä voi myös luokitella css tyylejä tarvittaessa -->
+        <div>{{lecture.course.id}}</div>
+        <div>{{lecture.course.name}}</div>
+        <div>{{lecture.course.room}}</div>
+      </div>
+    </div>
+  </div>
+</div>
