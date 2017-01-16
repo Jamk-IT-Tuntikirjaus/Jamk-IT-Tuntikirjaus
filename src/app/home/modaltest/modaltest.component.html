@@ -34,10 +34,14 @@
       </div>
       <div class="modal-body">
         <form>
-          Username <input type="text"><br>
-          Password <input type="password"><br>
+          <span>Username</span><br>
+          <input type="text"><br>
+          <span>Password</span><br>
+          <input type="password"><br>
+          <br>
           <input type="submit" value="Login" (click)="staticModal.hide()">
-          <button type="button" class="close" (click)="staticModal.hide()">Close</button>
+          <button type="button" (click)="staticModal.hide()">Cancel</button>
+          <a href="" style="font-size: 12px;">Forgot password?</a>
         </form>
       </div>
     </div>

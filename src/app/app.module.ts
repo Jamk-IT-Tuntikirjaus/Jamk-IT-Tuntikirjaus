@@ -46,6 +46,9 @@ import { AccordionDemoComponent } from './home/accord-test';
 import { ModalTestComponent } from './home/modaltest';
 import { ProgressbarDemoComponent } from './home/progressbar';
 
+//Projektissa käytettävät komponentit
+import { LoginModalComponent } from './home/login';
+
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
@@ -72,12 +75,17 @@ type StoreType = {
     HomeComponent,
     NoContentComponent,
     XLargeDirective,
+
+    //Testi componentit
     //CalenderComponent,
     Test,
     ADemo,
     AccordionDemoComponent,
     ModalTestComponent,
-    ProgressbarDemoComponent
+    ProgressbarDemoComponent,
+
+    //Project componentit
+    LoginModalComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
