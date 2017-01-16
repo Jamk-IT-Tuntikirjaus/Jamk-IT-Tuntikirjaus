@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HammerTestModule } from './hammer-test.module';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import {
   NgModule,
@@ -31,13 +30,14 @@ import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
 import { HammerTestComponent }   from './hammer-test';
+import { CourselistComponent } from './courselist';
 
 //Sivun import
 //import { CalenderComponent } from './app/calender';
 
 //Moduuli sisään, muista import NgModule!
+import { AccordionModule } from 'ng2-bootstrap/accordion';
 import {
-  AccordionModule,
   ModalModule,
   ProgressbarModule
 } from 'ng2-bootstrap';
@@ -96,6 +96,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     //Project componentit
     LoginModalComponent,
     HammerTestComponent,
+    CourselistComponent,
     XLargeDirective
   ],
   imports: [ // import Angular's modules
