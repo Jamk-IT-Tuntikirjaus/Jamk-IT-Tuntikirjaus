@@ -1,3 +1,13 @@
+.calender::selection {
+color: red;
+background: white;
+}
+
+.calender::-moz-selection {
+color: red;
+background: white;
+}
+
 .calender {
 
 }
@@ -47,11 +57,24 @@
 .lecture-information {
   /*
   Vastaa ^, -> borderista
-  Vastaa myös laidan border väristä
+
   */
   padding: 3px;
   text-align: center;
   border-top: 1px solid black;
-  border-left: 15px solid red;
   border-right: 1px solid black;
+}
+
+.lecture-check-true {
+  /*
+  Vastaa myös laidan border väristä
+  */
+  border-left: 15px solid green;
+}
+
+.lecture-check-false {
+  /*
+  Vastaa myös laidan border väristä
+  */
+  border-left: 15px solid red;
 }
