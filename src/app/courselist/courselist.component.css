@@ -11,3 +11,6 @@ progress {
 i {
   margin-left: 10px;
 }
+.progress-success{
+  background-color: red;
+}
