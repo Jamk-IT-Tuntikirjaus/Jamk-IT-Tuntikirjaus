@@ -34,7 +34,7 @@ import { HammerTestComponent }   from './hammer-test';
 import { CourselistComponent } from './courselist';
 
 //Sivun import
-//import { CalenderComponent } from './app/calender';
+//import { CalendarComponent } from './app/calendar';
 
 //Moduuli sisään, muista import NgModule!
 import {
@@ -52,7 +52,7 @@ import { ProgressbarDemoComponent } from './home/progressbar';
 
 //Projektissa käytettävät komponentit
 import { LoginModalComponent } from './home/login';
-import { CalenderComponent } from './home/calender';
+import { CalendarComponent } from './calendar';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -97,7 +97,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
 
     //Project componentit
     LoginModalComponent,
-    CalenderComponent
+    CalendarComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
