@@ -1,7 +1,6 @@
 import {
   Component
 } from '@angular/core';
-import { ProgressbarComponent } from './progressbar.component';
 
 console.log('`Courselist` component loaded asynchronously');
 
@@ -11,5 +10,30 @@ console.log('`Courselist` component loaded asynchronously');
   styleUrls: ['courselist.component.css'],
 })
 export class CourselistComponent {
-    name="Coureselist Component"
+    name="Courselist Component"
+    public max: number = 200;
+public type: string;
+public stacked: any[] = [];
+
+public constructor() {
+  this.randomStacked();
+}
+
+public randomStacked(): void {
+  let types = ['success', 'info'];
+
+  this.stacked = [];
+  let total = 0;
+  let n = 2;
+  let value = [20,30];
+  for (let i = 0; i < n; i++) {
+    total += value[i];
+    let barvalue = value[i];
+    this.stacked.push({
+      barvalue,
+      max: barvalue, // i !== (n - 1) ? value : 100,
+      type: types[i]
+    });
+  }
+}
 }

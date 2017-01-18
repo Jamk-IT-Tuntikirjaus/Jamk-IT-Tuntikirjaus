@@ -1,25 +1,25 @@
-.calender::selection {
+.calendar::selection {
 color: red;
 background: white;
 }
 
-.calender::-moz-selection {
+.calendar::-moz-selection {
 color: red;
 background: white;
 }
 
-.calender {
+.calendar {
 
 }
 
-.calender-header {
+.calendar-header {
   border-style: solid;
   border-color: black;
   border-width: 0 0 1px 1px;
   margin: 5px;
 }
 
-.calender-day {
+.calendar-day {
   /* inline-block
   Täyttää vain tarvittavan verran ja tavaraa voi olla vierekkäin riveissä.
 
@@ -28,7 +28,7 @@ background: white;
   padding: 5px;
 }
 
-.calender-weekday {
+.calendar-weekday {
   padding: 3px;
   font-weight: bold;
 }

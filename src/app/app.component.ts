@@ -2,9 +2,9 @@
  * Angular 2 decorators and services
  */
 import {
-  Component,
-  OnInit,
-  ViewEncapsulation
+    Component,
+    OnInit,
+    ViewEncapsulation
 } from '@angular/core';
 import { AppState } from './app.service';
 
@@ -13,12 +13,12 @@ import { AppState } from './app.service';
  * Top Level Component
  */
 @Component({
-  selector: 'app',
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    './app.component.css'
-  ],
-  template: `
+    selector: 'app',
+    encapsulation: ViewEncapsulation.None,
+    styleUrls: [
+        './app.component.css'
+    ],
+    template: `
     <nav>
       <div class="menu-mobile">
         <button md-icon-button [mdMenuTriggerFor]="menu">
@@ -26,26 +26,20 @@ import { AppState } from './app.service';
         </button>
 
         <md-menu #menu="mdMenu">
-          <button md-menu-item [routerLink]=" ['./'] " routerLinkActive="active"> Calendar </button>
-          <button md-menu-item [routerLink]=" ['./courselist']" routerLinkActive="active"> Settings </button>
+          <button md-menu-item [routerLink]=" ['./calendar'] " routerLinkActive="active"> Calendar </button>
+          <button md-menu-item [routerLink]=" ['./courselist']" routerLinkActive="active"> Course List </button>
           <button md-menu-item [routerLink]=" ['./'] " routerLinkActive="active"> Log out </button>
         </md-menu>
       </div>
       <div class="menu-desktop">
-        <a [routerLink]=" ['./home'] " routerLinkActive="active">
-          Home
-        </a>
-        <a [routerLink]=" ['./detail'] " routerLinkActive="active">
-          Detail
-        </a>
-        <a [routerLink]=" ['./barrel'] " routerLinkActive="active">
-          Barrel
-        </a>
-        <a [routerLink]=" ['./about'] " routerLinkActive="active">
-          About
+        <a [routerLink]=" ['./calendar'] " routerLinkActive="active">
+          Calendar
         </a>
         <a [routerLink]=" ['./courselist']" routerLinkActive="active">
-          Courselist
+          Course List
+        </a>
+        <a [routerLink]=" ['./']" routerLinkActive="active">
+          Log Out
         </a>
       </div>
     </nav>
@@ -53,7 +47,7 @@ import { AppState } from './app.service';
     <main>
       <router-outlet></router-outlet>
     </main>
-    <hammer-test>loading...</hammer-test>
+    <!--hammer-test>loading...</hammer-test>
 
     <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
 
@@ -64,21 +58,21 @@ import { AppState } from './app.service';
           <img [src]="angularclassLogo" width="25%">
         </a>
       </div>
-    </footer>
+    </footer-->
   `
 })
 export class AppComponent implements OnInit {
-  public angularclassLogo = 'assets/img/angularclass-avatar.png';
-  public name = 'Angular 2 Webpack Starter';
-  public url = 'https://twitter.com/AngularClass';
+    public angularclassLogo = 'assets/img/angularclass-avatar.png';
+    public name = 'Angular 2 Webpack Starter';
+    public url = 'https://twitter.com/AngularClass';
 
-  constructor(
-    public appState: AppState
-  ) {}
+    constructor(
+        public appState: AppState
+    ) { }
 
-  public ngOnInit() {
-    console.log('Initial App State', this.appState.state);
-  }
+    public ngOnInit() {
+        console.log('Initial App State', this.appState.state);
+    }
 
 }
 
