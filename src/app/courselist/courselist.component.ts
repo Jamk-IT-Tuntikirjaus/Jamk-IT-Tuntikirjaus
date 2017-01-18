@@ -33,7 +33,7 @@ public randomStacked(): void {
     this.stacked.push({
       barvalue,
       max: barvalue, // i !== (n - 1) ? value : 100,
-      type: types[i]
+      type: type
     });
   }
 }
