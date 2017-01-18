@@ -2,12 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
-import { AccordionModule } from 'ng2-bootstrap/accordion';
-import { ProgressbarModule } from 'ng2-bootstrap/progressbar';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import {
   NgModule,
-  ApplicationRef
+  ApplicationRef,
 } from '@angular/core';
 import {
   removeNgStyles,
@@ -34,6 +32,27 @@ import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
 import { HammerTestComponent }   from './hammer-test';
 import { CourselistComponent } from './courselist';
+
+//Sivun import
+//import { CalenderComponent } from './app/calender';
+
+//Moduuli sisään, muista import NgModule!
+import {
+  AccordionModule,
+  ModalModule,
+  ProgressbarModule
+} from 'ng2-bootstrap';
+
+//Komponentti sisään, muista declarata NgModule!
+import { Test } from './home/test';
+import { ADemo } from './home/ademo';
+import { AccordionDemoComponent } from './home/accord-test';
+import { ModalTestComponent } from './home/modaltest';
+import { ProgressbarDemoComponent } from './home/progressbar';
+
+//Projektissa käytettävät komponentit
+import { LoginModalComponent } from './home/login';
+import { CalenderComponent } from './home/calender';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -68,7 +87,17 @@ export class MyHammerConfig extends HammerGestureConfig  {
     NoContentComponent,
     HammerTestComponent,
     CourselistComponent,
-    XLargeDirective
+    XLargeDirective,
+
+    Test,
+    ADemo,
+    AccordionDemoComponent,
+    ModalTestComponent,
+    ProgressbarDemoComponent,
+
+    //Project componentit
+    LoginModalComponent,
+    CalenderComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -76,6 +105,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     HttpModule,
     MaterialModule.forRoot(),
     AccordionModule.forRoot(),
+    ModalModule.forRoot(),
     ProgressbarModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],

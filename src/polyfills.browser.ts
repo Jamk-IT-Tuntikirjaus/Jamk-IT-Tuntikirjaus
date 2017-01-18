@@ -39,6 +39,7 @@ if ('production' === ENV) {
 
 } else {
 
+
   // Development
   Error.stackTraceLimit = Infinity;
 

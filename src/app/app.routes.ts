@@ -13,5 +13,5 @@ export const ROUTES: Routes = [
   { path: 'courselist', component: CourselistComponent },
   { path: 'detail', loadChildren: './+detail#DetailModule'},
   { path: 'barrel', loadChildren: './+barrel#BarrelModule'},
-  { path: '**',    component: NoContentComponent },
+  { path: '**',    component: NoContentComponent }
 ];

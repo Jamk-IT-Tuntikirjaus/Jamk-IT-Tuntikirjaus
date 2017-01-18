@@ -1,0 +1,30 @@
+<!-- Button to open login modal -->
+<button type="button" class="btn btn-primary" (click)="staticModal.show()">Login modal</button>
+
+<!-- Actual object -->
+<!-- Darker background -->
+<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+   tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+   <!-- Layout box -->
+   <div class="modal-dialog modal-sm">
+     <div class="modal-content" style="background-color: darkcyan; color:; font-size:;">
+       <!-- Title -->
+       <div class="modal-header">
+         <h4 class="modal-title">Login to ASIO</h4>{{test}}
+      </div>
+      <!-- Body -->
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmit()">
+          <span>Username</span><br>
+          <input type="text" [(ngModel)]="data.username" placeholder="Username" required="true"><br>
+          <span>Password</span><br>
+          <input type="password" [(ngModel)]="data.password" placeholder="Password" required="true"><br>
+          <br>
+          <input type="submit" value="Login" (click)="staticModal.hide()">
+          <button type="button" (click)="staticModal.hide()">Cancel</button>
+          <a href="" style="font-size: 12px;">Forgot password?</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
