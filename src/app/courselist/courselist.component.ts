@@ -29,6 +29,7 @@ public randomStacked(): void {
   for (let i = 0; i < n; i++) {
     total += value[i];
     let barvalue = value[i];
+    let type = types[i];
     this.stacked.push({
       barvalue,
       max: barvalue, // i !== (n - 1) ? value : 100,
