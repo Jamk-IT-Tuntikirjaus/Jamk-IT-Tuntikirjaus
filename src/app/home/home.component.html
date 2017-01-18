@@ -1,16 +1,27 @@
+<!--<!DOCTYPE html>
+<html>
+    <title>User Input</title>
+    <meta charset="UTF-8">-->
+<!--<script>
+      System.import('click-me.component').catch(function(err){ console.error(err); });
+    </script>-->
+<script>
+    import { click-me.component }           from '@angular/core';
+    </script>
+
 <div class="card-container">
-  <h1 x-large class="sample-content">Your Content Here</h1>
+  <h1 x-large class="sample-content">Your Content Here
+
+  </h1>
 
   <hr>
 
-  <div>
+  <!--<div>
     For hot module reloading run
     <pre>npm run start:hmr</pre>
-  </div>
+  </div>-->
 
-  <hr>
-
-  <div>
+<!--  <div>
     <h4>Local State</h4>
 
     <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
@@ -18,20 +29,119 @@
       <input
         [value]="localState.value"
         (input)="localState.value = $event.target.value"
-        placeholder="Submit Local State to App State"
+        placeholder="SÖÖÖSubmit Local State to App State"
         autofocus>
 
       <button md-raised-button color="primary">Submit Value</button>
     </form>
-    <!--
+
         <input type="text" [value]="localState.value" (input)="localState.value = $event.target.value" autofocus>
         Rather than wiring up two-way data-binding ourselves with [value] and (input)
         we can use Angular's [(ngModel)] syntax
         <input type="text" name="textInput" [(ngModel)]="localState.value" autofocus>
       -->
 
-    <pre>this.localState = {{ localState | json }}</pre>
+<!--    <pre>this.localState = {{ localState | json }}</pre>
 
   </div>
 
 </div>
+
+
+    <pre class="card card-block card-header">{{singleModel}}</pre>
+    <button type="button" class="btn btn-primary"
+            [(ngModel)]="singleModel" btnCheckbox
+            btnCheckboxTrue="1" btnCheckboxFalse="0">
+      OK
+    </button>
+
+    <button type="button" class="btn btn-primary"
+            [(ngModel)]="singleModel" btnCheckbox
+            btnCheckboxTrue="1" btnCheckboxFalse="0">
+      Edit courses
+    </button>
+jjjjjjjj
+    <button type="button" name="b3" id="b">test</button>
+
+
+    <div>
+      <h4>Local State</h4>
+
+      <form (ngSubmit)="submitState(l.value)" autocomplete="off">
+
+        <input
+          [value]="l.value"
+          (input)="l = $event.target.value"
+          placeholder="PÖÖÖSubmit Local State to App State"
+          autofocus>
+
+        <button md-raised-button color="primary">Submit Value</button>
+      </form>
+
+          <input type="text" [value]="localState.value" (input)="localState.value = $event.target.value" autofocus>
+          Rather than wiring up two-way data-binding ourselves with [value] and (input)
+          we can use Angular's [(ngModel)] syntax
+          <input type="text" name="textInput" [(ngModel)]="localState.value" autofocus>
+        -->
+
+    <!--  <pre>this.l = {{ l | json }}</pre>
+
+    </div>
+
+    <p>
+      <click-me></click-me>
+    </p>
+  <!---->
+
+    <!--<button name="click">HUUUUU</button>-->
+  <button name="click-me">HUUUUU</button><!--
+
+
+<button (click)="onClickMe()">Click me!</button>-->
+
+
+      <!--<click-me></click-me>-->
+    <!--  </html>-->
+
+
+<!--  <script>
+
+    import { Component } from '@angular/core';
+
+    @Component({
+      selector: 'click-me',
+      template: `
+        <button (click)="onClickMe()">Click me!</button>
+        {{clickMessage}}`
+    })
+    export class ClickMeComponent {
+      clickMessage = '';
+
+      onClickMe() {
+        this.clickMessage = 'You are my hero!';
+      }
+    }
+  </script>-->
+
+
+  <!--<pre>this.clickMessage = {{ clickMessage | json }}</pre>-->
+
+
+    <!--<input type="button" name="ti">Click</input>-->
+
+
+
+
+
+
+<!--
+// RECOMMENDED
+import { ButtonsModule } from 'ng2-bootstrap/buttons';
+// or
+import { ButtonsModule } from 'ng2-bootstrap';
+
+@NgModule({
+  imports: [ButtonsModule.forRoot(),...]
+})
+export class AppModule(){}
+-->

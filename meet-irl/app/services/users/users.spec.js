@@ -1,0 +1,2 @@
+describe('Users factory', function() {
+});
