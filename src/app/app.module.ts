@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AccordionModule } from 'ng2-bootstrap/accordion';
+import { ProgressbarModule } from 'ng2-bootstrap/progressbar';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import {
   NgModule,
@@ -36,10 +38,8 @@ import { CourselistComponent } from './courselist';
 //import { CalendarComponent } from './app/calendar';
 
 //Moduuli sisään, muista import NgModule!
-import { AccordionModule } from 'ng2-bootstrap/accordion';
 import {
   ModalModule,
-  ProgressbarModule
 } from 'ng2-bootstrap';
 
 //Komponentti sisään, muista declarata NgModule!
