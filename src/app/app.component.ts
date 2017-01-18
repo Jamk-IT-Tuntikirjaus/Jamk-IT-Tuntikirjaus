@@ -20,24 +20,34 @@ import { AppState } from './app.service';
   ],
   template: `
     <nav>
-      <a [routerLink]=" ['./'] " routerLinkActive="active">
-        Index
-      </a>
-      <a [routerLink]=" ['./home'] " routerLinkActive="active">
-        Home
-      </a>
-      <a [routerLink]=" ['./detail'] " routerLinkActive="active">
-        Detail
-      </a>
-      <a [routerLink]=" ['./barrel'] " routerLinkActive="active">
-        Barrel
-      </a>
-      <a [routerLink]=" ['./about'] " routerLinkActive="active">
-        About
-      </a>
-      <a [routerLink]=" ['./courselist']" routerLinkActive="active">
-        Courselist
-      </a>
+      <div class="menu-mobile">
+        <button md-icon-button [mdMenuTriggerFor]="menu">
+          <md-icon>more_vert</md-icon>
+        </button>
+
+        <md-menu #menu="mdMenu">
+          <button md-menu-item [routerLink]=" ['./'] " routerLinkActive="active"> Calendar </button>
+          <button md-menu-item [routerLink]=" ['./courselist']" routerLinkActive="active"> Settings </button>
+          <button md-menu-item [routerLink]=" ['./'] " routerLinkActive="active"> Log out </button>
+        </md-menu>
+      </div>
+      <div class="menu-desktop">
+        <a [routerLink]=" ['./home'] " routerLinkActive="active">
+          Home
+        </a>
+        <a [routerLink]=" ['./detail'] " routerLinkActive="active">
+          Detail
+        </a>
+        <a [routerLink]=" ['./barrel'] " routerLinkActive="active">
+          Barrel
+        </a>
+        <a [routerLink]=" ['./about'] " routerLinkActive="active">
+          About
+        </a>
+        <a [routerLink]=" ['./courselist']" routerLinkActive="active">
+          Courselist
+        </a>
+      </div>
     </nav>
 
     <main>
