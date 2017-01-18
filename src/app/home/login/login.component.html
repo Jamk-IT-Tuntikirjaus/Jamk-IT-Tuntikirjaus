@@ -3,7 +3,7 @@
 
 <!-- Actual object -->
 <!-- Darker background -->
-<div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+<div id="login" class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
    tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
    <!-- Layout box -->
    <div class="modal-dialog modal-sm">
@@ -16,11 +16,11 @@
       <div class="modal-body">
         <form (ngSubmit)="onSubmit()">
           <span>Username</span><br>
-          <input type="text" [(ngModel)]="data.username" placeholder="Username" required="true"><br>
+          <input type="text" placeholder="Username" #username required="true"><br>
           <span>Password</span><br>
-          <input type="password" [(ngModel)]="data.password" placeholder="Password" required="true"><br>
+          <input type="password" placeholder="Password" #password required="true"><br>
           <br>
-          <input type="submit" value="Login" (click)="staticModal.hide()">
+          <button type="button" (click)="onSubmit(username.value, password.value); staticModal.hide()">Login</button>
           <button type="button" (click)="staticModal.hide()">Cancel</button>
           <a href="" style="font-size: 12px;">Forgot password?</a>
         </form>

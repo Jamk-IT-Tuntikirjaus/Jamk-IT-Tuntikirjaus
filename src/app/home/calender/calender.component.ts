@@ -20,6 +20,7 @@ export class CalenderComponent {
     //this.showView(7);
     //this.days = 7;
 
+    /* localstorageen ei välttämättä lupaa...
     //Hakee koneen muistista tekstin pätkän.
     let days = localStorage.getItem("token");
     //let a = days - 0;
@@ -29,13 +30,38 @@ export class CalenderComponent {
       localStorage.setItem("token", '7777777');
       days = localStorage.getItem("token");
     }
+    */
+    //Cookie versio
+    let days = this.getCookie("calenderdaycount");
+    if(days == ""){
+      document.cookie = "calenderdaycount=7777777";
+      days = this.getCookie("calenderdaycount");
+    }
+
     //...ja ladataan näkymä.
     this.showView(days.length);
 
   }
 
+  getCookie(cookiename: string){
+    var name = cookiename + "=";
+     var decodedCookie = decodeURIComponent(document.cookie);
+     var ca = decodedCookie.split(';');
+     for(var i = 0; i <ca.length; i++) {
+         var c = ca[i];
+         while (c.charAt(0) == ' ') {
+             c = c.substring(1);
+         }
+         if (c.indexOf(name) == 0) {
+             return c.substring(name.length, c.length);
+         }
+     }
+     return "";
+   }
+
   day(dayss: string){
-    localStorage.setItem("token", dayss);
+    //localStorage.setItem("token", dayss);
+    document.cookie = "calenderdaycount=" + dayss;
   }
 
   loadWeek(){
