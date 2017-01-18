@@ -1,0 +1,13 @@
+p {
+  display:block;
+  float:left;
+  margin-right: 10px;
+}
+progress {
+  margin-bottom: 0px;
+  display:block;
+  width:auto;
+}
+i {
+  margin-left: 10px;
+}

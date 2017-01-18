@@ -1,6 +1,7 @@
 import {
   Component
 } from '@angular/core';
+import { ProgressbarComponent } from './progressbar.component';
 
 console.log('`Courselist` component loaded asynchronously');
 
@@ -9,4 +10,6 @@ console.log('`Courselist` component loaded asynchronously');
   templateUrl: 'courselist.component.html',
   styleUrls: ['courselist.component.css'],
 })
-export class CourselistComponent { }
+export class CourselistComponent {
+    name="Coureselist Component"
+}

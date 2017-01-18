@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AccordionModule } from 'ng2-bootstrap/accordion';
+import { ProgressbarModule } from 'ng2-bootstrap/progressbar';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import {
   NgModule,
@@ -73,6 +74,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     FormsModule,
     HttpModule,
     AccordionModule.forRoot(),
+    ProgressbarModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
