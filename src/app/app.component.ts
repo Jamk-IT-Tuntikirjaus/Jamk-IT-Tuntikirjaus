@@ -45,7 +45,7 @@ import { AppState } from './app.service';
         <login> Log in </login>
       </div>
     </nav>
-
+      <menu-object>Loading</menu-object>
     <main>
       <router-outlet></router-outlet>
     </main>
