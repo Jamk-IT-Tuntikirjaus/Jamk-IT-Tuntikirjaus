@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import {
   NgModule,
@@ -37,6 +36,7 @@ import { CourselistComponent } from './courselist';
 //import { CalendarComponent } from './app/calendar';
 
 //Moduuli sisään, muista import NgModule!
+import { MaterialModule } from '@angular/material';
 import {
   AccordionModule,
   ModalModule,
@@ -53,6 +53,8 @@ import { ProgressbarDemoComponent } from './home/progressbar';
 //Projektissa käytettävät komponentit
 import { LoginModalComponent } from './home/login';
 import { CalendarComponent } from './calendar';
+import { CardComponent } from './home/card';
+import { MenuComponent } from './menu';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -97,7 +99,10 @@ export class MyHammerConfig extends HammerGestureConfig  {
 
     //Project componentit
     LoginModalComponent,
-    CalendarComponent
+    CalendarComponent,
+    ADemo,
+    CardComponent,
+    MenuComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -107,6 +112,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     AccordionModule.forRoot(),
     ModalModule.forRoot(),
     ProgressbarModule.forRoot(),
+    MaterialModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
