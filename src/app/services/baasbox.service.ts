@@ -34,8 +34,8 @@ export class BaasBoxService {
       loginTest () {
         let url = this.baseUrl + '/login'
         let body = {
-          "username": "user3",
-          "password": "123",
+          "username": "user",
+          "password": "password",
           "appcode": this.appcode
         }
         return this.http.post(url, body).toPromise()
