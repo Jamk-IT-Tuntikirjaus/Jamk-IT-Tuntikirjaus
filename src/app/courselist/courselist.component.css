@@ -3,10 +3,11 @@ p {
   float:left;
   margin-right: 10px;
 }
-progress {
+bs-progress {
   margin-bottom: 0px;
   display:block;
   width:auto;
+  background-color: lightgray;
 }
 i {
   margin-left: 10px;
