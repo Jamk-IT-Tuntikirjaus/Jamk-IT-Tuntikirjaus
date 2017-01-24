@@ -5,24 +5,17 @@
 
     @Component({
       selector: 'login',
-      templateUrl: './login.component.html'
+      templateUrl: './login.component.html',
+      styleUrls: ['./login.component.css']
     })
-    export class LoginModalComponent {
+    export class LoginComponent {
       //@ViewChild('staticModal') login: ElementRef;
-      data;
       constructor(/*private http:Http*/) {
-        this.data = {
-          username: 'some name',
-          password: 'some password',
-
-        }
 
       }
       onSubmit(username: string, password: string) {
-        this.data.username = username;
-        this.data.password = password;
-        alert("username: " + this.data.username);
-        alert("password: " + this.data.password);
+        alert("username: " + username);
+        alert("password: " + password);
         //$('#staticModal').modal('hide');
         //JQuery("#staticModal").modal("hide");
         //this.http.post("http://google.fi/", JSON.stringify(this.data)).subscribe();

@@ -29,7 +29,6 @@ import { AppState } from './app.service';
           <button md-menu-item [routerLink]=" ['./courselist']" routerLinkActive="active"> Course List </button>
           <button md-menu-item [routerLink]=" ['./'] " routerLinkActive="active"> Log out </button>
         </md-menu>
-        <login> Log in </login>
       </div>
       <div class="menu-desktop">
         <a [routerLink]=" ['./calendar'] " routerLinkActive="active">
@@ -41,7 +40,6 @@ import { AppState } from './app.service';
         <a [routerLink]=" ['./']" routerLinkActive="active">
           Log Out
         </a>
-        <login> Log in </login>
       </div>
     </nav>
     <main>

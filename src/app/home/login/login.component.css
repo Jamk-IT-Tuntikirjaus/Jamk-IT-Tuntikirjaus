@@ -1,0 +1,42 @@
+.login {
+    text-align: center;
+    margin-top: 20mm;
+}
+.login-base {
+    background-color: #007766;
+    //color: black;
+    border: 1mm solid black;
+    border-radius: 8mm;
+    padding: 5mm 20mm;
+    display: inline-block;
+}
+.login-header {
+
+}
+.login-form {
+
+}
+.login-form input {
+    border-radius: 3mm;
+    border-width: 0;
+    padding: 1mm 2mm;
+    margin-bottom: 3mm;
+}
+.login-form button {
+    font-size: 4mm;
+    border-radius: 3mm;
+    border-width: 0;
+    padding: 1mm 2mm;
+}
+.login-form a {
+    font-size: 4mm;
+    color: white;
+}
+.login-base:hover .login-alert {
+    display: block;
+}
+.login-alert {
+    display: none;
+    background-color: red;
+    color: white;
+}
