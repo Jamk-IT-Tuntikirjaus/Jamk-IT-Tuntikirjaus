@@ -35,5 +35,20 @@
         <div>{{lecture.course.room}}</div>
       </div>
     </div>
+
+    <div *ngFor="let lecture of day.lectures">
+        <md-card class="lecture-check-true">
+            <md-card-header>
+                <md-card-title>{{lecture.time.start}} - {{lecture.time.end}}</md-card-title>
+                <!--md-card-subtitle><hr></md-card-subtitle-->
+            </md-card-header>
+            <md-card-content>
+                <div>{{lecture.course.id}}</div>
+                <div>{{lecture.course.name}}</div>
+                <div>{{lecture.course.room}}</div>
+            </md-card-content>
+            <!--md-card-actions></md-card-actions-->
+        </md-card>
+    </div>
   </div>
 </div>

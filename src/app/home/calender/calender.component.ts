@@ -61,7 +61,8 @@ export class CalendarComponent {
 
   day(dayss: string){
     //localStorage.setItem("token", dayss);
-    document.cookie = "calendardaycount=" + dayss;
+    //document.cookie = "calendardaycount=" + dayss;
+    this.showView(dayss.length);
   }
 
   loadWeek(){

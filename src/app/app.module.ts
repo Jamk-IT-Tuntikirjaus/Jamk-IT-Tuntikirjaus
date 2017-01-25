@@ -51,7 +51,7 @@ import { ModalTestComponent } from './home/modaltest';
 import { ProgressbarDemoComponent } from './home/progressbar';
 
 //Projektissa käytettävät komponentit
-import { LoginModalComponent } from './home/login';
+import { LoginComponent } from './home/login';
 import { CalendarComponent } from './calendar';
 import { CardComponent } from './home/card';
 import { MenuComponent } from './menu';
@@ -98,7 +98,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     ProgressbarDemoComponent,
 
     //Project componentit
-    LoginModalComponent,
+    LoginComponent,
     CalendarComponent,
     ADemo,
     CardComponent,

@@ -24,13 +24,11 @@ import { AppState } from './app.service';
         <button md-icon-button [mdMenuTriggerFor]="menu">
           <md-icon>more_vert</md-icon>
         </button>
-
         <md-menu #menu="mdMenu">
           <button md-menu-item [routerLink]=" ['./calendar'] " routerLinkActive="active"> Calendar </button>
           <button md-menu-item [routerLink]=" ['./courselist']" routerLinkActive="active"> Course List </button>
           <button md-menu-item [routerLink]=" ['./'] " routerLinkActive="active"> Log out </button>
         </md-menu>
-        <login> Log in </login>
       </div>
       <div class="menu-desktop">
         <a [routerLink]=" ['./calendar'] " routerLinkActive="active">
@@ -42,17 +40,13 @@ import { AppState } from './app.service';
         <a [routerLink]=" ['./']" routerLinkActive="active">
           Log Out
         </a>
-        <login> Log in </login>
       </div>
     </nav>
-      <menu-object>Loading</menu-object>
     <main>
       <router-outlet></router-outlet>
     </main>
     <!--hammer-test>loading...</hammer-test>
-
     <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
-
     <footer>
       <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
       <div>

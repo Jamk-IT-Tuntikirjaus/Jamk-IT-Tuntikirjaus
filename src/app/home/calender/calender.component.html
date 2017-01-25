@@ -3,9 +3,9 @@
   <div class="calendar-nav">
     <!--button>Month</button-->
     <div>Show schedule by week</div>
-    <button (click)="this.day('7777777')" onclick="location.reload();">Week</button>
-    <button (click)="this.day('333')" onclick="location.reload();">3 Days</button>
-    <button (click)="this.day('1')" onclick="location.reload();">Day</button>
+    <button (click)="this.day('7777777')">Week</button>
+    <button (click)="this.day('333')">3 Days</button>
+    <button (click)="this.day('1')">Day</button>
   </div>
   <div class="calendar-day" *ngFor="let day of view">
     <hr class="timeline" style="position: ;">
