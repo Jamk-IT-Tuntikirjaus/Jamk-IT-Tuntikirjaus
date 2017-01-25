@@ -27,28 +27,24 @@ import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 import { HomeComponent } from './home';
-import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
 import { HammerTestComponent }   from './hammer-test';
 import { CourselistComponent } from './courselist';
 
-//Sivun import
-//import { CalendarComponent } from './app/calendar';
 
 //Moduuli sisään, muista import NgModule!
 import { MaterialModule } from '@angular/material';
 import {
   AccordionModule,
-  ModalModule,
+  //ModalModule,
   ProgressbarModule
 } from 'ng2-bootstrap';
 
 //Projektissa käytettävät komponentit
 import { LoginComponent } from './home/login';
 import { CalendarComponent } from './calendar';
-import { CardComponent } from './home/card';
-import { MenuComponent } from './menu';
+import { CalendarViewComponent } from './template/calendarview';
 
 //Used Services
 import { BaasBoxService } from './services/baasbox.service';
@@ -81,19 +77,17 @@ export class MyHammerConfig extends HammerGestureConfig  {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    AboutComponent,
     HomeComponent,
     NoContentComponent,
-    HammerTestComponent,
-    CourselistComponent,
     XLargeDirective,
 
     //Project componentit
     LoginComponent,
     CalendarComponent,
-    CardComponent,
-    MenuComponent,
-    BaasBoxService
+    BaasBoxService,
+    CalendarViewComponent,
+    HammerTestComponent,
+    CourselistComponent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -102,7 +96,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     BaasBoxService,
     MaterialModule.forRoot(),
     AccordionModule.forRoot(),
-    ModalModule.forRoot(),
+    //ModalModule.forRoot(),
     ProgressbarModule.forRoot(),
     MaterialModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
