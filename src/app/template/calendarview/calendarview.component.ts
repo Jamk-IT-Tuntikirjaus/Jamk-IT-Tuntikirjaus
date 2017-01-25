@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+//Enables date formatting with typescript because pipes do not work on mobile
+import * as moment from 'moment';
 
 @Component({
   selector: 'calendarview',
@@ -87,9 +89,10 @@ export class CalendarViewComponent {
 
       //It's not fun to have monday for the rest of my life...
       let tempdate = new Date(date);
+      let formatteddate = moment(tempdate).format('dddd D.M.YYYY');
 
       //The promised day!
-      let day = new Day(tempdate, lectures);
+      let day = new Day(tempdate, formatteddate, lectures);
       this.week.push(day);
       date.setDate(date.getDate() + 1);
     }
@@ -114,7 +117,7 @@ export class CalendarViewComponent {
 
         weekday.setDate(weekday.getDate()+1);
         let tempdate = new Date(weekday);
-        let tempday = new Day(tempdate, this.week[i].lectures);
+        let tempday = new Day(tempdate, this.week[i].formatteddate, this.week[i].lectures);
         this.view.push(tempday);
 
         //this.view.push(this.week[i]);
@@ -132,7 +135,6 @@ export class CalendarViewComponent {
     }
 
   }
-
   SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
   currentIndex = new Date().getDay();
   // action triggered when user swipes
@@ -162,10 +164,12 @@ class Day {
   //Lista tunneista
   lectures: Array<Lecture>; //or Lecture[]
   date: Date;
+  formatteddate: string;
 
   //Constructor that accepts date
-  constructor(date: Date, lectures: Lecture[]){
+  constructor(date: Date, formatteddate: string, lectures: Lecture[]){
       this.date = date;
+      this.formatteddate = formatteddate;
       this.lectures = lectures;
   }
 }
