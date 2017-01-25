@@ -21,6 +21,7 @@ export class BaasBoxService {
 
     // Login user
       login (username: string, password: string) {
+        console.log("baasboxservice")
         let url = this.baseUrl + '/login'
         let body = {
           "username": username,
@@ -32,7 +33,7 @@ export class BaasBoxService {
 
     // Login test user
       loginTest () {
-        let url = this.baseUrl + '/login'
+        let url = this.baseUrl + '/plugin/esatime.login'
         let body = {
           "username": "user",
           "password": "password",

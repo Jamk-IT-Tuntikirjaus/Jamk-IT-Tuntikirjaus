@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { rxjs } from '/rxjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import {
   NgModule,
@@ -43,18 +44,14 @@ import {
   ProgressbarModule
 } from 'ng2-bootstrap';
 
-//Komponentti sisään, muista declarata NgModule!
-import { Test } from './home/test';
-import { ADemo } from './home/ademo';
-import { AccordionDemoComponent } from './home/accord-test';
-import { ModalTestComponent } from './home/modaltest';
-import { ProgressbarDemoComponent } from './home/progressbar';
-
 //Projektissa käytettävät komponentit
 import { LoginComponent } from './home/login';
 import { CalendarComponent } from './calendar';
 import { CardComponent } from './home/card';
 import { MenuComponent } from './menu';
+
+//Used Services
+import { BaasBoxService } from './services/baasbox.service';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -91,23 +88,18 @@ export class MyHammerConfig extends HammerGestureConfig  {
     CourselistComponent,
     XLargeDirective,
 
-    Test,
-    ADemo,
-    AccordionDemoComponent,
-    ModalTestComponent,
-    ProgressbarDemoComponent,
-
     //Project componentit
     LoginComponent,
     CalendarComponent,
-    ADemo,
     CardComponent,
-    MenuComponent
+    MenuComponent,
+    BaasBoxService
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
     HttpModule,
+    BaasBoxService,
     MaterialModule.forRoot(),
     AccordionModule.forRoot(),
     ModalModule.forRoot(),
