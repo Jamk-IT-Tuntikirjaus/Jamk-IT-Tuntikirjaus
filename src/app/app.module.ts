@@ -45,6 +45,7 @@ import {
 //Projektissa käytettävät komponentit
 import { LoginComponent } from './home/login';
 import { CalendarComponent } from './calendar';
+import { CalendarViewComponent } from './template/calendarview';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -81,6 +82,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     //Project componentit
     LoginComponent,
     CalendarComponent,
+    CalendarViewComponent,
     HammerTestComponent,
     CourselistComponent,
   ],

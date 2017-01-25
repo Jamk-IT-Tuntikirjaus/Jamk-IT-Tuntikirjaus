@@ -1,0 +1,33 @@
+<div class="calendar-nav">
+  <!--button>Month</button-->
+  <div>Show schedule by week</div>
+  <button (click)="this.day('7777777')">Week</button>
+  <button (click)="this.day('333')">3 Days</button>
+  <button (click)="this.day('1')">Day</button>
+  <button onclick="TouchEmulator();">Touch emulate</button>
+  <p>{{this.currentIndex}} {{this.week.length}}</p>
+  <p *ngFor="let da of week">{{da.date}}</p>
+</div>
+<div class="calendar-day" *ngFor="let day of view;">
+    <hr class="timeline" style="position: ;">
+    <div class="calendar-header"
+    (swipeleft)="swipe($event.type);"
+    (swiperight)="swipe($event.type);">
+        <div class="calendar-weekday">{{ day.date | date:'EEEE dd.MM.y' }}</div>
+    </div>
+
+    <div *ngFor="let lecture of day.lectures">
+        <md-card class="lecture-check-true" *ngIf="lecture.check=='true'" (click)="lecture.onCheck()">
+            <md-card-content>
+                <div>{{lecture.course.id}}</div>
+                <div>{{lecture.course.name}}</div>
+            </md-card-content>
+        </md-card>
+        <md-card class="lecture-check-false" *ngIf="lecture.check=='false' || lecture.check==''" (click)="lecture.onCheck()">
+            <md-card-content>
+                <div>{{lecture.course.id}}</div>
+                <div>{{lecture.course.name}}</div>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>
