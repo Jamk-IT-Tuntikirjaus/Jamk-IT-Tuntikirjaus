@@ -66,18 +66,18 @@ background: white;
 }
 
 md-card {
-    background-color: lightgray;
+    background-color: #eeeeee;
 }
 .lecture-check-true {
   /*
   Vastaa myös laidan border väristä
   */
-  border-left: 15px solid #5cb85c;
+  border-left: 15px solid  #8bc34a;
 }
 
 .lecture-check-false {
   /*
   Vastaa myös laidan border väristä
   */
-  border-left: 15px solid #d9534f;
+  border-left: 15px solid #e53935;
 }
