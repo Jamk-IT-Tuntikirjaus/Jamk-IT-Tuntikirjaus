@@ -1,10 +1,10 @@
 <div class="login">
     <div class="login-base">
         <h1 class="login-header">Haka login</h1>
-        <form class="login-form" #f="ngForm">
-            <input name="username" [(ngModel)]="data.username" type="text" placeholder="username" />
-            <input name="password" [(ngModel)]="data.password" type="password" placeholder="password" />
-            <button class="button" (click)="login(data.username, data.password)">login</button>
+        <form class="login-form">
+            <input name="username" type="text" placeholder="username" />
+            <input name="password" type="password" placeholder="password" />
+            <button type=submit class="button" (click)="login(username.value, password.value)">login</button>
         </form>
 
         <div class="login-alert">

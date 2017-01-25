@@ -47,7 +47,7 @@ import { CalendarComponent } from './calendar';
 import { CalendarViewComponent } from './template/calendarview';
 
 //Used Services
-import { BaasBoxService } from './services/baasbox.service';
+import { BaasBoxService } from './services/baasbox';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -84,7 +84,6 @@ export class MyHammerConfig extends HammerGestureConfig  {
     //Project componentit
     LoginComponent,
     CalendarComponent,
-    BaasBoxService,
     CalendarViewComponent,
     HammerTestComponent,
     CourselistComponent,
@@ -93,7 +92,6 @@ export class MyHammerConfig extends HammerGestureConfig  {
     BrowserModule,
     FormsModule,
     HttpModule,
-    BaasBoxService,
     MaterialModule.forRoot(),
     AccordionModule.forRoot(),
     //ModalModule.forRoot(),
@@ -104,6 +102,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
+    BaasBoxService,
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig

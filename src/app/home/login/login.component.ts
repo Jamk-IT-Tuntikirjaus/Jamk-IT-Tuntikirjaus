@@ -1,9 +1,7 @@
 
-
 import { Component } from '@angular/core';//, ViewChild, ElementRef, Renderer } from '@angular/core';
-import { NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BaasBoxService } from './../../services';
+import { BaasBoxService } from './../../services/baasbox';
 
 @Component({
     selector: 'login',
@@ -15,6 +13,7 @@ export class LoginComponent {
     constructor(private router: Router, private baasBoxService: BaasBoxService) { }
 
     login(username: string, password: string) {
+      alert(username);
       console.log("login component")
         this.baasBoxService.login(username, password)
             .then(response => {
