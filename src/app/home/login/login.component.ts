@@ -9,11 +9,12 @@ import { BaasBoxService } from './../../services/baasbox';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
-    constructor(private router: Router, private baasBoxService: BaasBoxService) { }
+    constructor(
+      private router: Router,
+      private baasBoxService: BaasBoxService) {
+      }
 
     login(username: string, password: string) {
-      alert(username);
       console.log("login component")
         this.baasBoxService.login(username, password)
             .then(response => {

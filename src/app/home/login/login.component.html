@@ -2,9 +2,9 @@
     <div class="login-base">
         <h1 class="login-header">Haka login</h1>
         <form class="login-form">
-            <input name="username" type="text" placeholder="username" />
-            <input name="password" type="password" placeholder="password" />
-            <button type=submit class="button" (click)="login(username.value, password.value)">login</button>
+            <input name="username" #username type="text" placeholder="username" />
+            <input name="password" #password type="password" placeholder="password" />
+            <button class="button" (click)="login(username.value, password.value)">login</button>
         </form>
 
         <div class="login-alert">
