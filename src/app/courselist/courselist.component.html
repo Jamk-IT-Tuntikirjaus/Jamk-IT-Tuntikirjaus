@@ -6,15 +6,17 @@
   </accordion-group>
   <accordion-group #group>
     <div class="nowrap" accordion-heading>
-      <div class="course-header">Kurssi 1</div>
+      <div class="course-header">IIO11300 Windows-ohjelmointi</div>
       <i class="pull-right glyphicon glyphicon-trash"></i>
       <bs-progress>
         <bar *ngFor="let baz of stacked" [value]="baz.barvalue" [type]="baz?.type">
-          <span *ngIf="baz.barvalue > 5">{{baz?.barvalue}}%</span>
+          <span *ngIf="baz.barvalue > 5">{{baz?.hourvalue}}h</span>
         </bar>
       </bs-progress>
     </div>
-    Additional course information here
+    Total hours: {{this?.teachinghours + this?.planninghours}}
+    {{this.max}}
+    {{this.overworktime}}
   </accordion-group>
   <accordion-group heading="Content 1">
     <p>Content 1</p>
