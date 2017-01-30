@@ -5,8 +5,8 @@
     This content is straight in the template.
   </accordion-group>
   <accordion-group #group>
-    <div accordion-heading>
-      <p>Kurssi 1</p>
+    <div class="nowrap" accordion-heading>
+      <div class="course-header">Kurssi 1</div>
       <i class="pull-right glyphicon glyphicon-trash"></i>
       <bs-progress>
         <bar *ngFor="let baz of stacked" [value]="baz.barvalue" [type]="baz?.type">

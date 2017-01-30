@@ -1,7 +1,5 @@
 p {
-  display:block;
-  float:left;
-  margin-right: 10px;
+
 }
 bs-progress {
   margin-bottom: 0px;
@@ -11,4 +9,15 @@ bs-progress {
 }
 i {
   margin-left: 10px;
+}
+.nowrap{
+    white-space: nowrap;
+}
+.course-header{
+    display:inline-block;
+    float:left;
+    margin-right: 10px;
+    word-wrap: normal;
+    width: 34mm;
+    overflow: hidden;
 }
