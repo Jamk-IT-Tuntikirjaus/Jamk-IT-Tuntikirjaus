@@ -37,6 +37,8 @@ User: Collection                                Moo's collection
         Author
             //Author that made this document. Default baasbox user with certain priviledges!
         Data: Document-Data                     {...};
+            CourseID: string                    CourseID: 'AHYSDFR-123k03';
+            Total: number                       Total: 200;
             Lectures: Lecture data array        Lectures: {...};
                 Date: string                    Date: '00/00/0000';
                 Time: string                    Time: '8:00 - 12:00';
@@ -71,32 +73,70 @@ export class BaasBoxService {
 
     //Baasbox login check
     // Login user
-    login (username: string, password: string) {
+    login(username: string, password: string) {
         let url = this.baseUrl + '/login'
         let body = {
-          "username": username,
-          "password": password,
-          "appcode": this.appcode
+            "username": username,
+            "password": password,
+            "appcode": this.appcode
         }
         return this.http.post(url, body).toPromise()
     }
 
     // Login test user
-      loginTest () {
+    loginTest() {
         let url = this.baseUrl + '/login'
         let body = {
-          "username": "user3",
-          "password": "123",
-          "appcode": this.appcode
+            "username": "user3",
+            "password": "123",
+            "appcode": this.appcode
         }
         return this.http.post(url, body).toPromise();
     }
 
     //BaasBox database commands
     //Create Collection -- Users own Collection
+    createCollection(session: string, user: string, data) {
+        let url = this.baseUrl + '/login'
+        return this.http.post(url, data).toPromise()
+    }
     //Delete Collection -- Remove users data, but we use BaasBox to do that as an admin panel.
     //Create Document -- CourseID, lectures and check times
     //Modify Document -- Gives new and possibly changed data inside document. User might destroy his data...
     //Delete Document -- Removes whole course from database!!! Maybe we should add a hide option instead?
 
-  }
+
+    /* Example JSON data for document
+    {
+      "CourseID": "AAAAAAAA-asd123",
+      "Total": "200",
+      "Lectures": [
+        {
+          "Date": "00/00/0000",
+          "Time": "8:00 - 12:00"
+        },
+        {
+          "Date": "00/00/0000",
+          "Time": "13:00 - 15:00"
+        }
+      ],
+      "Check": [
+        {
+          "Date": "00/00/0000",
+          "Time": "8:00 - 12:00",
+          "How-Long": "2.5",
+          "Kept-Lesson": "true",
+          "Message": "Haha!! Hard coded test to test json!"
+        },
+        {
+          "Date": "00/00/0000",
+          "Time": "13:00 - 15:00",
+          "How-Long": "2.5",
+          "Kept-Lesson": "false",
+          "Message": "Haha!! Hard coded test to test json again!"
+        }
+      ]
+    }
+    */
+    //BaasBox database tests
+}
