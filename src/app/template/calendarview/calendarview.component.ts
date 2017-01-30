@@ -82,6 +82,7 @@ export class CalendarViewComponent {
       lecture.setCourse("ID" + i, "Name" + i, "Room" + i);
       lectures.push(lecture);
 
+      //Repeat to new Lecture class
       lecture = new Lecture();
       lecture.setTime("12:00", "15:00");
       lecture.setCourse("ID" + i, "Name" + i, "Room" + i);
