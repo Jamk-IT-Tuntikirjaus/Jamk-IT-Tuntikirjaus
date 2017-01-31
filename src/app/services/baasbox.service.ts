@@ -52,23 +52,23 @@ export class BaasBoxService {
 
     //Baasbox login check
     // Login user
-    login (username: string, password: string) {
+    login(username: string, password: string) {
         let url = this.baseUrl + '/login'
         let body = {
-          "username": username,
-          "password": password,
-          "appcode": this.appcode
+            "username": username,
+            "password": password,
+            "appcode": this.appcode
         }
         return this.http.post(url, body).toPromise()
     }
 
     // Login test user
-      loginTest () {
+    loginTest() {
         let url = this.baseUrl + '/login'
         let body = {
-          "username": "user3",
-          "password": "123",
-          "appcode": this.appcode
+            "username": "user3",
+            "password": "123",
+            "appcode": this.appcode
         }
         return this.http.post(url, body).toPromise();
 
@@ -83,6 +83,7 @@ export class BaasBoxService {
     }
 
     //BaasBox database commands
+
     //Create Document -- CourseID, lectures and check times
     CreateDocument (sessionID: string, data) {
         let url = this.baseUrl + '/document/Test';
@@ -95,4 +96,38 @@ export class BaasBoxService {
     //Modify Document -- Gives new and possibly changed data inside document. User might destroy his data...
     //Delete Document -- Removes whole course from database!!! Maybe we should add a hide option instead?
 
-  }
+
+    /* Example JSON data for document
+    {
+      "CourseID": "AAAAAAAA-asd123",
+      "Total": "200",
+      "Lectures": [
+        {
+          "Date": "00/00/0000",
+          "Time": "8:00 - 12:00"
+        },
+        {
+          "Date": "00/00/0000",
+          "Time": "13:00 - 15:00"
+        }
+      ],
+      "Check": [
+        {
+          "Date": "00/00/0000",
+          "Time": "8:00 - 12:00",
+          "How-Long": "2.5",
+          "Kept-Lesson": "true",
+          "Message": "Haha!! Hard coded test to test json!"
+        },
+        {
+          "Date": "00/00/0000",
+          "Time": "13:00 - 15:00",
+          "How-Long": "2.5",
+          "Kept-Lesson": "false",
+          "Message": "Haha!! Hard coded test to test json again!"
+        }
+      ]
+    }
+    */
+    //BaasBox database tests
+}
