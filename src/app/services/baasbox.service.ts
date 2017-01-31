@@ -20,39 +20,6 @@ Document basic information are:
     Database for parsed lectures that are taken from elsewhere
 */
 
-/* Datatable for lecture document
-Collection for each user
-Document for each courseid
-Document-Data contains information about lectures and checked times
-Lectures are parsed from website
-Checks are added and modified using a website
-Checks may not take data in when they were made or chenged
-
-User: Collection                                Moo's collection
-    CourseID: Document                          AIY56414-k45
-        Creation Date
-            //Document creation date, shows when the course was added
-        ID
-            //Document id
-        Author
-            //Author that made this document. Default baasbox user with certain priviledges!
-        Data: Document-Data                     {...};
-            Lectures: Lecture data array        Lectures: {...};
-                Date: string                    Date: '00/00/0000';
-                Time: string                    Time: '8:00 - 12:00';
-            Check: Check data array             Check: {...};
-                Date: string                    Date: '00/00/0000';
-                Time: string                    Time: '8:00 - 12:00';
-                How-Long: float/double/string   How-Long: 1.25;
-                Kept-Lesson: boolean            Kept-Lesson: false;
-                Message: string                 Message: 'Hello, I did this lesson, but maybe not in the room I thought I would';
-                //Check-Time: string            //Check-Time: '00/00/0000 8:00 AM';
-        Actions
-            //Not sure what it does...
-
-Mites käyttäjä huomioidaan?
-*/
-
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
