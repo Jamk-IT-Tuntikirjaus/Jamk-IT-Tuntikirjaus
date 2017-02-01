@@ -1,0 +1,15 @@
+http().post(function(req) {
+    try {
+        Box.log(req.body.collection);
+        Box.log(req.body.data);
+        var doc = Box.Documents.save(req.body.collection, req.body.data);
+        return {
+            status: 200,
+            content: 'Document to collection ' + req.body.collection +
+            ' was succesfully made!' };
+    }
+    catch (error) {
+        Box.log("Error:", error);
+        return { status: 500, content: error };
+    }
+});

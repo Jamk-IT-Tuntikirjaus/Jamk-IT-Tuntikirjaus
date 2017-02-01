@@ -1,0 +1,10 @@
+/* script: esatime.document.new */
+http().post(function(req) {
+    try {
+        var docs = Box.Documents.find(req.body.collection,{where:"city = 'london'",orderBy:"name asc"});
+        return { status: 200 };
+    } catch (error) {
+      Box.log("Error:", error)
+        return { status: 500, content: error }
+    }
+});
