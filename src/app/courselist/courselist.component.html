@@ -1,17 +1,20 @@
-<h1>Courselist</h1>
+<h1 class="no-margin-top">Courselist</h1>
 <div>
     <accordion>
         <accordion-group #group *ngFor="let courselist of courses; let i = index">
             <div class="nowrap" accordion-heading>
-                <div class="course-header">{{courselist?.courseid + courselist?.coursename}}</div>
+                <div class="course-header">{{courselist?.group + " " + courselist?.courseid + " " + courselist?.coursename}}</div>
                 <i class="pull-right glyphicon glyphicon-trash"></i>
+            <div style="display:block">
                 <bs-progress>
                     <bar *ngFor="let baz of koira[i]" [value]="baz.barvalue" [type]="baz?.type">
                         <span *ngIf="baz.barvalue > 5">{{baz?.hourvalue}}h</span>
                     </bar>
                 </bs-progress>
             </div>
+            </div>
             Total hours: {{courselist?.teachinghours + courselist?.planninghours}}
+            <br> Group: {{courselist?.group}}
             <br> CourseID: {{courselist?.courseid}}
             <br> Course name: {{courselist?.coursename}}
         </accordion-group>

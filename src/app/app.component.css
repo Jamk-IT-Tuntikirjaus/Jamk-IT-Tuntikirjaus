@@ -6,6 +6,12 @@ html, body{
 a.active {
   background-color: gray;
 }
+
+.menu-desktop {
+    margin-top: 16px;
+    margin-bottom: 20px;
+}
+
 @media screen and (min-width: 481px) {
   .menu-mobile {
     display:none;
@@ -14,5 +20,8 @@ a.active {
 @media screen and (max-width: 480px) {
   .menu-desktop {
     display:none;
+  }
+  .menu-mobile {
+
   }
 }
