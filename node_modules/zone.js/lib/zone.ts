@@ -97,7 +97,7 @@
  *
  * ### [TimerTask]
  *
- * [TimerTask]s represents work which will be done after some delay. (Sometimes the delay is
+ * [TimerTask]s represent work which will be done after some delay. (Sometimes the delay is
  * approximate such as on next available animation frame). Typically these methods include:
  * `setTimeout`, `setImmediate`, `setInterval`, `requestAnimationFrame`, and all browser specif
  * variants.
@@ -105,8 +105,8 @@
  *
  * ### [EventTask]
  *
- * [EventTask]s represents a request to create a listener on an event. Unlike the other task
- * events may never be executed, but typically execute more then once. There is no queue of
+ * [EventTask]s represent a request to create a listener on an event. Unlike the other task
+ * events may never be executed, but typically execute more than once. There is no queue of
  * events, rather their callbacks are unpredictable both in order and time.
  *
  *
@@ -962,6 +962,22 @@ const Zone: ZoneType = (function(global: any) {
         return Object.prototype.toString.call(this);
       }
     }
+
+    // add toJSON method to prevent cyclic error when
+    // call JSON.stringify(zoneTask)
+    public toJSON() {
+      return {
+        type: this.type,
+        source: this.source,
+        data: this.data,
+        zone: this.zone.name,
+        invoke: this.invoke,
+        scheduleFn: this.scheduleFn,
+        cancelFn: this.cancelFn,
+        runCount: this.runCount,
+        callback: this.callback
+      };
+    }
   }
 
   interface UncaughtPromiseError extends Error {
@@ -1151,6 +1167,10 @@ const Zone: ZoneType = (function(global: any) {
   }
 
   class ZoneAwarePromise<R> implements Promise<R> {
+    static toString() {
+      return 'function ZoneAwarePromise() { [native code] }';
+    }
+
     static resolve<R>(value: R): Promise<R> {
       return resolvePromise(<ZoneAwarePromise<R>>new this(null), RESOLVED, value);
     }
@@ -1310,14 +1330,135 @@ const Zone: ZoneType = (function(global: any) {
   let frameParserStrategy = null;
   const stackRewrite = 'stackRewrite';
 
+  // fix #595, create property descriptor
+  // for error properties
+  const createProperty = function(props, key) {
+    // if property is already defined, skip it.
+    if (props[key]) {
+      return;
+    }
+    // define a local property
+    // in case error property is not settable
+    const name = __symbol__(key);
+    props[key] = {
+      configurable: true,
+      enumerable: true,
+      get: function() {
+        // if local property has no value
+        // use internal error's property value
+        if (!this[name]) {
+          const error = this[__symbol__('error')];
+          if (error) {
+            this[name] = error[key];
+          }
+        }
+        return this[name];
+      },
+      set: function(value) {
+        // setter will set value to local property value
+        this[name] = value;
+      }
+    };
+  };
+
+  // fix #595, create property descriptor
+  // for error method properties
+  const createMethodProperty = function(props, key) {
+    if (props[key]) {
+      return;
+    }
+    props[key] = {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function() {
+        const error = this[__symbol__('error')];
+        let errorMethod = (error && error[key]) || this[key];
+        if (errorMethod) {
+          return errorMethod.apply(error, arguments);
+        }
+      }
+    };
+  };
+
+  const createErrorProperties = function() {
+    const props = Object.create(null);
+
+    const error = new NativeError();
+    let keys = Object.getOwnPropertyNames(error);
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      // Avoid bugs when hasOwnProperty is shadowed
+      if (Object.prototype.hasOwnProperty.call(error, key)) {
+        createProperty(props, key);
+      }
+    }
+
+    const proto = NativeError.prototype;
+    if (proto) {
+      let pKeys = Object.getOwnPropertyNames(proto);
+      for (let i = 0; i < pKeys.length; i++) {
+        const key = pKeys[i];
+        // skip constructor
+        if (key !== 'constructor' && key !== 'toString' && key !== 'toSource') {
+          createProperty(props, key);
+        }
+      }
+    }
+
+    // some other properties are not
+    // in NativeError
+    createProperty(props, 'originalStack');
+    createProperty(props, 'zoneAwareStack');
+
+    // define toString, toSource as method property
+    createMethodProperty(props, 'toString');
+    createMethodProperty(props, 'toSource');
+    return props;
+  };
+
+  const errorProperties = createErrorProperties();
+
+  // for derived Error class which extends ZoneAwareError
+  // we should not override the derived class's property
+  // so we create a new props object only copy the properties
+  // from errorProperties which not exist in derived Error's prototype
+  const getErrorPropertiesForPrototype = function(prototype) {
+    // if the prototype is ZoneAwareError.prototype
+    // we just return the prebuilt errorProperties.
+    if (prototype === ZoneAwareError.prototype) {
+      return errorProperties;
+    }
+    const newProps = Object.create(null);
+    const cKeys = Object.getOwnPropertyNames(errorProperties);
+    const keys = Object.getOwnPropertyNames(prototype);
+    cKeys.forEach(cKey => {
+      if (keys.filter(key => {
+                return key === cKey;
+              })
+              .length === 0) {
+        newProps[cKey] = errorProperties[cKey];
+      }
+    });
+
+    return newProps;
+  };
 
   /**
    * This is ZoneAwareError which processes the stack frame and cleans up extra frames as well as
    * adds zone information to it.
    */
   function ZoneAwareError() {
+    // make sure we have a valid this
+    // if this is undefined(call Error without new) or this is global
+    // or this is some other objects, we should force to create a
+    // valid ZoneAwareError by call Object.create()
+    if (!(this instanceof ZoneAwareError)) {
+      return ZoneAwareError.apply(Object.create(ZoneAwareError.prototype), arguments);
+    }
     // Create an Error.
     let error: Error = NativeError.apply(this, arguments);
+    this[__symbol__('error')] = error;
 
     // Save original stack trace
     error.originalStack = error.stack;
@@ -1354,7 +1495,10 @@ const Zone: ZoneType = (function(global: any) {
       }
       error.stack = error.zoneAwareStack = frames.join('\n');
     }
-    return error;
+    // use defineProperties here instead of copy property value
+    // because of issue #595 which will break angular2.
+    Object.defineProperties(this, getErrorPropertiesForPrototype(Object.getPrototypeOf(this)));
+    return this;
   }
 
   // Copy the prototype so that instanceof operator works as expected
@@ -1379,7 +1523,9 @@ const Zone: ZoneType = (function(global: any) {
 
   if (NativeError.hasOwnProperty('captureStackTrace')) {
     Object.defineProperty(ZoneAwareError, 'captureStackTrace', {
-      value: function(targetObject: Object, constructorOpt?: Function) {
+      // add named function here because we need to remove this
+      // stack frame when prepareStackTrace below
+      value: function zoneCaptureStackTrace(targetObject: Object, constructorOpt?: Function) {
         NativeError.captureStackTrace(targetObject, constructorOpt);
       }
     });
@@ -1390,11 +1536,25 @@ const Zone: ZoneType = (function(global: any) {
       return NativeError.prepareStackTrace;
     },
     set: function(value) {
-      return NativeError.prepareStackTrace = value;
+      if (!value || typeof value !== 'function') {
+        return NativeError.prepareStackTrace = value;
+      }
+      return NativeError.prepareStackTrace = function(error, structuredStackTrace) {
+        // remove additional stack information from ZoneAwareError.captureStackTrace
+        if (structuredStackTrace) {
+          for (let i = 0; i < structuredStackTrace.length; i++) {
+            const st = structuredStackTrace[i];
+            // remove the first function which name is zoneCaptureStackTrace
+            if (st.getFunctionName() === 'zoneCaptureStackTrace') {
+              structuredStackTrace.splice(i, 1);
+              break;
+            }
+          }
+        }
+        return value.apply(this, [error, structuredStackTrace]);
+      };
     }
   });
-
-  // Now we need to populet the `blacklistedStackFrames` as well as find the
 
   // Now we need to populet the `blacklistedStackFrames` as well as find the
   // run/runGuraded/runTask frames. This is done by creating a detect zone and then threading

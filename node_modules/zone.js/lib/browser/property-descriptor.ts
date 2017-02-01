@@ -56,14 +56,23 @@ function canPatchViaPropertyDescriptor() {
     if (desc && !desc.configurable) return false;
   }
 
+  const xhrDesc = Object.getOwnPropertyDescriptor(XMLHttpRequest.prototype, 'onreadystatechange');
+
+  // add enumerable and configurable here because in opera
+  // by default XMLHttpRequest.prototype.onreadystatechange is undefined
+  // without adding enumerable and configurable will cause onreadystatechange
+  // non-configurable
   Object.defineProperty(XMLHttpRequest.prototype, 'onreadystatechange', {
+    enumerable: true,
+    configurable: true,
     get: function() {
       return true;
     }
   });
   const req = new XMLHttpRequest();
   const result = !!req.onreadystatechange;
-  Object.defineProperty(XMLHttpRequest.prototype, 'onreadystatechange', {});
+  // restore original desc
+  Object.defineProperty(XMLHttpRequest.prototype, 'onreadystatechange', xhrDesc || {});
   return result;
 };
 
