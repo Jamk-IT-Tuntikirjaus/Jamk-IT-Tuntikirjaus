@@ -2,8 +2,9 @@ h1 {
   color: #00BCD4;
 }
 
-.no-margin-top{
-    margin-top: 0px;
+.h1-main{
+    margin-top: 10px;
+    margin-left: 4px;
 }
 
 .nowrap {

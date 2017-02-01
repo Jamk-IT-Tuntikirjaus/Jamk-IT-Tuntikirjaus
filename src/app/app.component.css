@@ -9,7 +9,10 @@ a.active {
 
 .menu-desktop {
     margin-top: 16px;
-    margin-bottom: 20px;
+}
+
+.menu-mobile {
+    float: right;
 }
 
 @media screen and (min-width: 481px) {

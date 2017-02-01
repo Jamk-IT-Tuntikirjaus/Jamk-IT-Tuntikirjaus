@@ -11,13 +11,6 @@ i {
     margin-left: 10px;
 }
 
-.nowrap {
-    white-space: nowrap;
-}
-.no-margin-top{
-    margin-top: 0px;
-}
-
 .course-header {
     display: inline-block;
     margin-right: 10px;
