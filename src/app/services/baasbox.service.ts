@@ -5,6 +5,7 @@
 /* Slang to use in BaasBox
 Database contains array of lists that are called collections
 Collection contains array of objects that are called documents
+Collections are made by admins only
 Document contains an object that we use to check times for certain lections
 Document basic information are:
     Creation Date - The date document was created
@@ -12,6 +13,19 @@ Document basic information are:
     Author - Who made document
     Data - Documents inside information
     Actions - ???
+*/
+
+/* collections
+    User
+    Course
+    Lection
+    Record
+        Record-Type: Teaching / Planning
+        Date: Date
+
+    //Group
+        HoT: UserID
+        Members: UserID array
 */
 
 /* What we use baasbox service for:
@@ -38,32 +52,82 @@ export class BaasBoxService {
 
     //Baasbox login check
     // Login user
-    login (username: string, password: string) {
+    login(username: string, password: string) {
         let url = this.baseUrl + '/login'
         let body = {
-          "username": username,
-          "password": password,
-          "appcode": this.appcode
+            "username": username,
+            "password": password,
+            "appcode": this.appcode
         }
         return this.http.post(url, body).toPromise()
     }
 
     // Login test user
-      loginTest () {
+    loginTest() {
         let url = this.baseUrl + '/login'
         let body = {
-          "username": "user3",
-          "password": "123",
-          "appcode": this.appcode
+            "username": "user3",
+            "password": "123",
+            "appcode": this.appcode
         }
         return this.http.post(url, body).toPromise();
+
+    }
+    sessionTest () {
+      let url = this.baseUrl + '/login'
+      let body = {
+        "username": "user3",
+        "password": "123",
+        "appcode": this.appcode
+      }
     }
 
     //BaasBox database commands
-    //Create Collection -- Users own Collection
-    //Delete Collection -- Remove users data, but we use BaasBox to do that as an admin panel.
+
     //Create Document -- CourseID, lectures and check times
+    CreateDocument (sessionID: string, data) {
+        let url = this.baseUrl + '/document/Test';
+        return this.http.post(url, data).toPromise();
+    }
+    getDocument (sessionID: string, documentID: string) {
+        let url = this.baseUrl + '/document/Test/' + documentID;
+        return this.http.get(url).toPromise();
+    }
     //Modify Document -- Gives new and possibly changed data inside document. User might destroy his data...
     //Delete Document -- Removes whole course from database!!! Maybe we should add a hide option instead?
 
-  }
+
+    /* Example JSON data for document
+    {
+      "CourseID": "AAAAAAAA-asd123",
+      "Total": "200",
+      "Lectures": [
+        {
+          "Date": "00/00/0000",
+          "Time": "8:00 - 12:00"
+        },
+        {
+          "Date": "00/00/0000",
+          "Time": "13:00 - 15:00"
+        }
+      ],
+      "Check": [
+        {
+          "Date": "00/00/0000",
+          "Time": "8:00 - 12:00",
+          "How-Long": "2.5",
+          "Kept-Lesson": "true",
+          "Message": "Haha!! Hard coded test to test json!"
+        },
+        {
+          "Date": "00/00/0000",
+          "Time": "13:00 - 15:00",
+          "How-Long": "2.5",
+          "Kept-Lesson": "false",
+          "Message": "Haha!! Hard coded test to test json again!"
+        }
+      ]
+    }
+    */
+    //BaasBox database tests
+}

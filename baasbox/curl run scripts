@@ -1,0 +1,16 @@
+Login script
+curl http://0.0.0.0:9000/login \
+    -d "username=user3" \
+    -d "password=123" \
+    -d "appcode=1234567890" | json
+
+Tekee jotain script...
+curl -X POST --data "user=user&passwd=password" http://0.0.0.0:9000/plugin/esatime.login \
+     -H X-BB-SESSION:dc7082bc-f217-4ce8-9246-f51fd7bd6977 | json
+
+Create document script
+curl \
+http://0.0.0.0:9000/plugin/esatime.document.new \
+-X POST -d '{"collection":"Test", "data": {"Heello": "Hey", "Hoo": "Huu"}}' \
+-H "Content-Type: application/json" \
+-H X-BB-SESSION:dc7082bc-f217-4ce8-9246-f51fd7bd6977 | json
