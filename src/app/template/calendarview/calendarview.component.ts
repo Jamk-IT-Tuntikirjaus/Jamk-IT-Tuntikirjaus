@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
+//Enables date formatting with typescript because pipes do not work on mobile
+import * as moment from 'moment';
 
 @Component({
-  selector: 'calendar',
-  templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.css'],
+  selector: 'calendarview',
+  templateUrl: './calendarview.component.html',
+  styleUrls: ['./calendarview.component.css'],
 
 })
 
-export class CalendarComponent {
+export class CalendarViewComponent {
   //Sisältää listan päivän tunneista
   week: Array<Day>; //or Day[]
   //Täytetään week listasta
@@ -62,6 +64,7 @@ export class CalendarComponent {
   day(dayss: string){
     //localStorage.setItem("token", dayss);
     document.cookie = "calendardaycount=" + dayss;
+    this.showView(dayss.length);
   }
 
   loadWeek(){
@@ -79,6 +82,7 @@ export class CalendarComponent {
       lecture.setCourse("ID" + i, "Name" + i, "Room" + i);
       lectures.push(lecture);
 
+      //Repeat to new Lecture class
       lecture = new Lecture();
       lecture.setTime("12:00", "15:00");
       lecture.setCourse("ID" + i, "Name" + i, "Room" + i);
@@ -86,9 +90,10 @@ export class CalendarComponent {
 
       //It's not fun to have monday for the rest of my life...
       let tempdate = new Date(date);
+      let formatteddate = moment(tempdate).format('dddd D.M.YYYY');
 
       //The promised day!
-      let day = new Day(tempdate, lectures);
+      let day = new Day(tempdate, formatteddate, lectures);
       this.week.push(day);
       date.setDate(date.getDate() + 1);
     }
@@ -113,11 +118,16 @@ export class CalendarComponent {
 
         weekday.setDate(weekday.getDate()+1);
         let tempdate = new Date(weekday);
-        let tempday = new Day(tempdate, this.week[i].lectures);
+        let tempday = new Day(tempdate, this.week[i].formatteddate, this.week[i].lectures);
         this.view.push(tempday);
 
         //this.view.push(this.week[i]);
       }
+    }
+    else if(count == 0){
+      let today = new Date();
+      this.view = new Array<Day>();
+      this.view.push(this.week[this.currentIndex -1]);
     }
     else {
       let today = new Date();
@@ -126,16 +136,41 @@ export class CalendarComponent {
     }
 
   }
+  SWIPE_ACTION = { LEFT: 'swipeleft', RIGHT: 'swiperight' };
+  currentIndex = new Date().getDay();
+  // action triggered when user swipes
+  swipe(action = this.SWIPE_ACTION.RIGHT) {
+      // out of range
+      // swipe right, next avatar
+      if (action === this.SWIPE_ACTION.RIGHT) {
+          //To left
+          this.currentIndex--;
+          if(this.currentIndex < 1) this.currentIndex = this.week.length;
+      }
+
+      // swipe left, previous avatar
+      if (action === this.SWIPE_ACTION.LEFT) {
+          //To right
+          this.currentIndex++;
+          if(this.currentIndex > this.week.length) this.currentIndex = 1;
+      }
+      this.showView(0);
+
+      // toggle avatar visibility
+      //this.week.forEach((x, i) => x.visible = (i === nextIndex));
+  }
 }
 
 class Day {
   //Lista tunneista
   lectures: Array<Lecture>; //or Lecture[]
   date: Date;
+  formatteddate: string;
 
   //Constructor that accepts date
-  constructor(date: Date, lectures: Lecture[]){
+  constructor(date: Date, formatteddate: string, lectures: Lecture[]){
       this.date = date;
+      this.formatteddate = formatteddate;
       this.lectures = lectures;
   }
 }
@@ -183,7 +218,7 @@ class Lecture {
         this.check = 'false';
         break;
       case 'false':
-        this.check = '';
+        this.check = 'true';
         break;
     }
   }

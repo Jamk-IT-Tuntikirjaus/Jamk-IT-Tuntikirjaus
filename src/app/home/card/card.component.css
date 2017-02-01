@@ -1,9 +1,0 @@
-.example-card {
-  width: 400px;
-}
-
-.example-header-image {
-  /*Ei osaa hakea tätä kuvaa... se on netissä? tai samassa kansiossa pitäisi olla*/
-  /*background-image: url('assets/img/angular-avatar.png');*/
-  background-size: cover;
-}
