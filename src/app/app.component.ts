@@ -8,12 +8,15 @@ import {
 } from '@angular/core';
 import { AppState } from './app.service';
 
+import { BaasBoxService } from './services/baasbox';
+
 /*
  * App Component
  * Top Level Component
  */
 @Component({
     selector: 'app',
+    providers: [BaasBoxService],
     encapsulation: ViewEncapsulation.None,
     styleUrls: [
         './app.component.css'
@@ -27,7 +30,7 @@ import { AppState } from './app.service';
         <md-menu #menu="mdMenu">
           <button md-menu-item [routerLink]=" ['./calendar'] " routerLinkActive="active"> Calendar </button>
           <button md-menu-item [routerLink]=" ['./courselist']" routerLinkActive="active"> Course List </button>
-          <button md-menu-item [routerLink]=" ['./'] " routerLinkActive="active"> Log out </button>
+          <button md-menu-item (click)="logout()" [routerLink]=" ['./'] " routerLinkActive="active"> Log out </button>
         </md-menu>
       </div>
       <div class="menu-desktop">
@@ -37,7 +40,7 @@ import { AppState } from './app.service';
         <a [routerLink]=" ['./courselist']" routerLinkActive="active">
           Course List
         </a>
-        <a [routerLink]=" ['./']" routerLinkActive="active">
+        <a (click)="logout()" [routerLink]=" ['./']" routerLinkActive="active">
           Log Out
         </a>
       </div>
@@ -58,16 +61,21 @@ import { AppState } from './app.service';
   `
 })
 export class AppComponent implements OnInit {
-    public angularclassLogo = 'assets/img/angularclass-avatar.png';
-    public name = 'Angular 2 Webpack Starter';
-    public url = 'https://twitter.com/AngularClass';
 
     constructor(
-        public appState: AppState
+        public appState: AppState,
+        private baasBoxService: BaasBoxService,
     ) { }
 
     public ngOnInit() {
         console.log('Initial App State', this.appState.state);
+    }
+
+    logout() {
+        console.log("logging out")
+        try {
+            this.baasBoxService.logout()
+        } catch (error) { alert(error) };
     }
 
 }
