@@ -25,19 +25,19 @@ import { AppState } from './app.service';
           <md-icon>more_vert</md-icon>
         </button>
         <md-menu #menu="mdMenu">
-          <button md-menu-item [routerLink]=" ['./calendar'] " routerLinkActive="active"> Calendar </button>
-          <button md-menu-item [routerLink]=" ['./courselist']" routerLinkActive="active"> Course List </button>
-          <button md-menu-item [routerLink]=" ['./'] " routerLinkActive="active"> Log out </button>
+          <button md-menu-item [routerLink]=" ['./calendar'] "> Calendar </button>
+          <button md-menu-item [routerLink]=" ['./courselist']"> Course List </button>
+          <button md-menu-item [routerLink]=" ['./'] "> Log out </button>
         </md-menu>
       </div>
       <div class="menu-desktop">
-        <a [routerLink]=" ['./calendar'] " routerLinkActive="active">
+        <a [routerLink]=" ['./calendar'] ">
           Calendar
         </a>
-        <a [routerLink]=" ['./courselist']" routerLinkActive="active">
+        <a [routerLink]=" ['./courselist']">
           Course List
         </a>
-        <a [routerLink]=" ['./']" routerLinkActive="active">
+        <a [routerLink]=" ['./']">
           Log Out
         </a>
       </div>

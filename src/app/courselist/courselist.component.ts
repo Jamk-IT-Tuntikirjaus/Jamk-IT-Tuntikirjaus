@@ -56,32 +56,27 @@ export class CourselistComponent {
         this.courses.push({
             courseid: "IIO12110.6S0V1",
             coursename: "Ohjelmistotuotannon käytännöt",
-            teachinghours: 700,
-            planninghours: 100,
+            group: "IIO13S2",
+            teachinghours: 500,
+            planninghours: 500,
             overworktime: 0,
             max: 750,
         },
         {
             courseid: "ZZPP0500.7K0V7",
             coursename: "Osaajana kehittyminen",
-            teachinghours: 300,
-            planninghours: 500,
+            group: "IIO15S2",
+            teachinghours: 200,
+            planninghours: 100,
             overworktime: 0,
             max: 500
         },
         {
             courseid: "IIO13100.7K0V1",
             coursename: "JavaEE-ohjelmointi",
+            group: "IIO16S1",
             teachinghours: 400,
-            planninghours: 700,
-            overworktime: 0,
-            max: 1000
-        },
-        {
-            courseid: "IIO13100.7K0V1",
-            coursename: "JavaEE-ohjelmointi",
-            teachinghours: 400,
-            planninghours: 700,
+            planninghours: 250,
             overworktime: 0,
             max: 1000
         });

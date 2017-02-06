@@ -3,12 +3,13 @@
     margin-top: 20mm;
 }
 .login-base {
-    background-color: #007766;
-    //color: black;
-    border: 1mm solid black;
-    border-radius: 8mm;
+    background-color: #E91E63;
+    border-radius: 4mm;
     padding: 5mm 20mm;
     display: inline-block;
+}
+.login-base h1 {
+    color: white !important;
 }
 .login-header {
 
@@ -16,9 +17,16 @@
 .login-form {
 
 }
+.login-form span {
+    color: white;
+}
+.login-form button {
+    color: white;
+    background-color: #880E4F;
+}
 .login-form input {
+    border: 2px solid #880E4F;
     border-radius: 3mm;
-    border-width: 0;
     padding: 1mm 2mm;
     margin-bottom: 3mm;
 }
