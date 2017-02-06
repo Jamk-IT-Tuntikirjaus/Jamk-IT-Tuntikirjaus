@@ -3,9 +3,17 @@ html, body{
   font-family: Arial, Helvetica, sans-serif
 }
 
-a.active {
-  background-color: gray;
+.menu-desktop {
+    padding-left: 12px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background-color: #E91E63;
 }
+
+.menu-mobile {
+    float: right;
+}
+
 @media screen and (min-width: 481px) {
   .menu-mobile {
     display:none;
@@ -14,5 +22,8 @@ a.active {
 @media screen and (max-width: 480px) {
   .menu-desktop {
     display:none;
+  }
+  .menu-mobile {
+
   }
 }
