@@ -1,5 +1,5 @@
 h1 {
-  color: #00BCD4;
+  color: #C2185B !important;
 }
 
 .h1-main{
@@ -9,4 +9,8 @@ h1 {
 
 .nowrap {
     white-space: nowrap;
+}
+
+body {
+    background-color: #FAFAFA !important;
 }
