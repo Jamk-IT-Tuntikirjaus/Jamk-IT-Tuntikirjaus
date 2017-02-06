@@ -108,7 +108,7 @@ export class CourselistComponent {
             max: 1000
         });
         for (let i = 0; i < this.courses.length; i++){
-            if (this.courses[i].pdi.substr(1,1) == "S"){
+            if (this.courses[i].pdi[1] == "S"){
                 this.asemester.push(this.courses[i]);
             }
             else this.ssemester.push(this.courses[i]);
