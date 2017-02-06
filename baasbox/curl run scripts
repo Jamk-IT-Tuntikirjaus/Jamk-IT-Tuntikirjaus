@@ -6,11 +6,25 @@ curl http://0.0.0.0:9000/login \
 
 Tekee jotain script...
 curl -X POST --data "user=user&passwd=password" http://0.0.0.0:9000/plugin/esatime.login \
-     -H X-BB-SESSION:dc7082bc-f217-4ce8-9246-f51fd7bd6977 | json
+     -H X-BB-SESSION:d321471a-89b8-4c24-92fb-f78f5d77f2f7 | json
 
 Create document script
 curl \
 http://0.0.0.0:9000/plugin/esatime.document.new \
 -X POST -d '{"collection":"Test", "data": {"Heello": "Hey", "Hoo": "Huu"}}' \
 -H "Content-Type: application/json" \
--H X-BB-SESSION:dc7082bc-f217-4ce8-9246-f51fd7bd6977 | json
+-H X-BB-SESSION:d321471a-89b8-4c24-92fb-f78f5d77f2f7 | json
+
+Modify document script
+curl \
+http://0.0.0.0:9000/plugin/esatime.document.modify \
+-X POST -d '{"collection":"Test", "id": "1e5614e9-90eb-449c-8af7-f8ba8e495a7d", "data": {"Hoo": "Huu"}}' \
+-H "Content-Type: application/json" \
+-H X-BB-SESSION:d321471a-89b8-4c24-92fb-f78f5d77f2f7 | json
+
+Find document script
+curl \
+http://0.0.0.0:9000/plugin/esatime.document.find \
+-X POST -d '{"collection":"Test", "id": "1e5614e9-90eb-449c-8af7-f8ba8e495a7d", "data": {"Hoo": "Huu"}}' \
+-H "Content-Type: application/json" \
+-H X-BB-SESSION:d321471a-89b8-4c24-92fb-f78f5d77f2f7 | json
