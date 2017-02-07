@@ -1,0 +1,28 @@
+.btn-red {
+    color: white;
+    background-color: #D32F2F;
+}
+
+.btn-red:hover {
+    color: white;
+    background-color: #B71C1C;
+}
+
+.btn-green {
+    background-color: #388E3C;
+    color: white;
+}
+
+.btn-green:hover {
+    background-color: #1B5E20;
+    color: white;
+}
+
+.modal-header {
+    background-color: #EEEEEE;
+    color: black;
+}
+
+.modal-body {
+    background-color: #f5f5f5;
+}

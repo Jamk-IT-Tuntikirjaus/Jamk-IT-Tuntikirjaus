@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { rxjs } from '/rxjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import {
   NgModule,
@@ -28,24 +29,27 @@ import { AppState, InternalStateType } from './app.service';
 import { HomeComponent } from './home';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
-import { HammerTestComponent }   from './hammer-test';
 import { CourselistComponent } from './courselist';
 
 
 //Moduuli sisään, muista import NgModule!
+import { TabsModule } from 'ng2-bootstrap/tabs';
 import { MaterialModule } from '@angular/material';
 import {
   AccordionModule,
-  //ModalModule,
+  ModalModule,
   ProgressbarModule
 } from 'ng2-bootstrap';
-
-//Komponentti sisään, muista declarata NgModule!
 
 //Projektissa käytettävät komponentit
 import { LoginComponent } from './home/login';
 import { CalendarComponent } from './calendar';
 import { CalendarViewComponent } from './template/calendarview';
+import { CourselistModalComponent } from './courselist/courselistmodal/'
+import { NavbarComponent } from './home/navbar';
+
+//Used Services
+import { BaasBoxService } from './services/baasbox';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -83,23 +87,25 @@ export class MyHammerConfig extends HammerGestureConfig  {
     LoginComponent,
     CalendarComponent,
     CalendarViewComponent,
-    HammerTestComponent,
     CourselistComponent,
+    CourselistModalComponent,
+    NavbarComponent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot(),
     AccordionModule.forRoot(),
-    //ModalModule.forRoot(),
+    ModalModule.forRoot(),
     ProgressbarModule.forRoot(),
     MaterialModule.forRoot(),
+    TabsModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
+    BaasBoxService,
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig

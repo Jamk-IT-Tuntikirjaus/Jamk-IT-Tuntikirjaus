@@ -18,14 +18,19 @@ i {
     overflow: hidden;
 }
 
-@media screen and (min-width: 767px) {}
+@media screen and (min-width: 767px) {
     .course-header {
         float: left;
         width: 70mm;
     }
+}
+
 @media screen and (max-width: 768px) {
     .course-header {
         float: none;
         width: 100%;
     }
+}
+.nav-tabs > li > a{
+    color:white;
 }

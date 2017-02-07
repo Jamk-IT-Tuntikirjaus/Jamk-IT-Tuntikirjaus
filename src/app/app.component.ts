@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { AppState } from './app.service';
 
+
 /*
  * App Component
  * Top Level Component
@@ -19,57 +20,21 @@ import { AppState } from './app.service';
         './app.component.css'
     ],
     template: `
-    <nav>
-      <div class="menu-mobile">
-        <button md-icon-button [mdMenuTriggerFor]="menu">
-          <md-icon>more_vert</md-icon>
-        </button>
-        <md-menu #menu="mdMenu">
-          <button md-menu-item [routerLink]=" ['./calendar'] "> Calendar </button>
-          <button md-menu-item [routerLink]=" ['./courselist']"> Course List </button>
-          <button md-menu-item [routerLink]=" ['./'] "> Log out </button>
-        </md-menu>
-      </div>
-      <div class="menu-desktop">
-        <a [routerLink]=" ['./calendar'] ">
-          Calendar
-        </a>
-        <a [routerLink]=" ['./courselist']">
-          Course List
-        </a>
-        <a [routerLink]=" ['./']">
-          Log Out
-        </a>
-      </div>
-    </nav>
+    <navbar></navbar>
     <main>
       <router-outlet></router-outlet>
     </main>
-    <!--hammer-test>loading...</hammer-test>
-    <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
-    <footer>
-      <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
-      <div>
-        <a [href]="url">
-          <img [src]="angularclassLogo" width="25%">
-        </a>
-      </div>
-    </footer-->
   `
 })
 export class AppComponent implements OnInit {
-    public angularclassLogo = 'assets/img/angularclass-avatar.png';
-    public name = 'Angular 2 Webpack Starter';
-    public url = 'https://twitter.com/AngularClass';
 
     constructor(
-        public appState: AppState
+        public appState: AppState,
     ) { }
 
     public ngOnInit() {
         console.log('Initial App State', this.appState.state);
     }
-
 }
 
 /*

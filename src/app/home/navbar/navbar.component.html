@@ -1,0 +1,23 @@
+<nav>
+    <div class="menu-mobile">
+        <button md-icon-button [mdMenuTriggerFor]="menu">
+      <md-icon>more_vert</md-icon>
+    </button>
+        <md-menu #menu="mdMenu">
+            <button md-menu-item [routerLink]=" ['./calendar'] " routerLinkActive="active"> Calendar </button>
+            <button md-menu-item [routerLink]=" ['./courselist']" routerLinkActive="active"> Course List </button>
+            <button md-menu-item (click)="this.logout()" [routerLink]=" ['./'] " routerLinkActive="active"> Log out </button>
+        </md-menu>
+    </div>
+    <div class="menu-desktop">
+        <a [routerLink]=" ['./calendar'] " routerLinkActive="active">
+      Calendar
+    </a>
+        <a [routerLink]=" ['./courselist']" routerLinkActive="active">
+      Course List
+    </a>
+        <a (click)="logout()" [routerLink]=" ['./']" routerLinkActive="active">
+      Log Out
+    </a>
+    </div>
+</nav>

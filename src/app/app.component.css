@@ -1,6 +1,6 @@
-html, body{
-  height: 100%;
-  font-family: Arial, Helvetica, sans-serif
+html, body {
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif
 }
 
 .menu-desktop {
@@ -15,15 +15,13 @@ html, body{
 }
 
 @media screen and (min-width: 481px) {
-  .menu-mobile {
-    display:none;
-  }
+    .menu-mobile {
+        display: none;
+    }
 }
-@media screen and (max-width: 480px) {
-  .menu-desktop {
-    display:none;
-  }
-  .menu-mobile {
 
-  }
+@media screen and (max-width: 480px) {
+    .menu-desktop {
+        display: none;
+    }
 }
