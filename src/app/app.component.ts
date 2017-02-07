@@ -34,10 +34,10 @@ import { BaasBoxService } from './services/baasbox';
         </md-menu>
       </div>
       <div class="menu-desktop">
-        <a [routerLink]=" ['./calendar'] " routerLinkActive="active">
+        <a [routerLink]=" ['./calendar'] ">
           Calendar
         </a>
-        <a [routerLink]=" ['./courselist']" routerLinkActive="active">
+        <a [routerLink]=" ['./courselist']">
           Course List
         </a>
         <a (click)="logout()" [routerLink]=" ['./']" routerLinkActive="active">

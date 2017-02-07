@@ -1,23 +1,31 @@
-p {
+p {}
 
-}
 bs-progress {
-  margin-bottom: 0px;
-  display:block;
-  width:auto;
-  background-color: lightgray;
+    margin-bottom: 0px;
+    display: block;
+    width: auto;
+    background-color: lightgray;
 }
+
 i {
-  margin-left: 10px;
+    margin-left: 10px;
 }
-.nowrap{
-    white-space: nowrap;
-}
-.course-header{
-    display:inline-block;
-    float:left;
+
+.course-header {
+    display: inline-block;
     margin-right: 10px;
     word-wrap: normal;
-    width: 44mm;
     overflow: hidden;
+}
+
+@media screen and (min-width: 767px) {}
+    .course-header {
+        float: left;
+        width: 70mm;
+    }
+@media screen and (max-width: 768px) {
+    .course-header {
+        float: none;
+        width: 100%;
+    }
 }
