@@ -1,0 +1,9 @@
+.btn-trashcan {
+    color: white;
+    background-color: #d9534f;
+}
+
+.btn-trashcan:hover {
+    color: white;
+    background-color: #B71C1C;
+}

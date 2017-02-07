@@ -1,45 +1,53 @@
 <h1 class="h1-main">Course list</h1>
 <div>
-    <h1>Autumn</h1>
-    <accordion>
-        <accordion-group #group *ngFor="let courselist of asemester; let i = index">
-            <div class="nowrap" accordion-heading>
-                <div class="course-header">{{courselist?.group + " " + courselist?.courseid + "." + courselist?.pdi + " " + courselist?.coursename}}</div>
-                <i class="pull-right glyphicon glyphicon-trash"></i>
-            <div style="display:block">
-                <bs-progress>
-                    <bar *ngFor="let baz of asemesterhours[i]" [value]="baz.barvalue" [type]="baz?.type">
-                        <span *ngIf="baz.barvalue > 5">{{baz?.hourvalue}}h</span>
-                    </bar>
-                </bs-progress>
-            </div>
-            </div>
-            Total hours: {{courselist?.teachinghours + courselist?.planninghours}}
-            <br> Group: {{courselist?.group}}
-            <br> CourseID: {{courselist?.courseid}}
-            <br> Pdi: {{courselist?.pdi}}
-            <br> Course name: {{courselist?.coursename}}
-        </accordion-group>
-    </accordion>
-    <h1>Spring</h1>
-    <accordion>
-        <accordion-group #group *ngFor="let courselist of ssemester; let i = index">
-            <div class="nowrap" accordion-heading>
-                <div class="course-header">{{courselist?.group + " " + courselist?.courseid + "." + courselist?.pdi + " " + courselist?.coursename}}</div>
-                <i class="pull-right glyphicon glyphicon-trash"></i>
-            <div style="display:block">
-                <bs-progress>
-                    <bar *ngFor="let baz of ssemesterhours[i]" [value]="baz.barvalue" [type]="baz?.type">
-                        <span *ngIf="baz.barvalue > 5">{{baz?.hourvalue}}h</span>
-                    </bar>
-                </bs-progress>
-            </div>
-            </div>
-            Total hours: {{courselist?.teachinghours + courselist?.planninghours}}
-            <br> Group: {{courselist?.group}}
-            <br> CourseID: {{courselist?.courseid}}
-            <br> Pdi: {{courselist?.pdi}}
-            <br> Course name: {{courselist?.coursename}}
-        </accordion-group>
-    </accordion>
+    <tabset>
+        <tab heading="Autumn">
+            <accordion>
+                <accordion-group #group *ngFor="let courselist of asemester; let i = index">
+                    <div class="nowrap" accordion-heading>
+                        <div class="course-header">{{courselist?.group + " " + courselist?.courseid + "." + courselist?.pdi + " " + courselist?.coursename}}</div>
+                        <div style="display:block">
+                            <bs-progress>
+                                <bar *ngFor="let baz of asemesterhours[i]" [value]="baz.barvalue" [type]="baz?.type">
+                                    <span *ngIf="baz.barvalue > 5">{{baz?.hourvalue}}h</span>
+                                </bar>
+                            </bs-progress>
+                        </div>
+                    </div>
+                    Total hours: {{courselist?.teachinghours + courselist?.planninghours}}
+                    <br> Group: {{courselist?.group}}
+                    <br> CourseID: {{courselist?.courseid}}
+                    <br> Pdi: {{courselist?.pdi}}
+                    <br> Course name: {{courselist?.coursename}}
+                    <br>
+                    <courselistmodal [courseid]="i" (ondelete)="deleteCourseAutumn($event)"></courselistmodal>
+                </accordion-group>
+            </accordion>
+            <button type="button" (click)="addAutumn()">Add course</button>
+        </tab>
+        <tab heading="Spring">
+            <accordion>
+                <accordion-group #group *ngFor="let courselist of ssemester; let i = index">
+                    <div class="nowrap" accordion-heading>
+                        <div class="course-header">{{courselist?.group + " " + courselist?.courseid + "." + courselist?.pdi + " " + courselist?.coursename}}</div>
+                    <div style="display:block">
+                        <bs-progress>
+                            <bar *ngFor="let baz of ssemesterhours[i]" [value]="baz.barvalue" [type]="baz?.type">
+                                <span *ngIf="baz.barvalue > 5">{{baz?.hourvalue}}h</span>
+                            </bar>
+                        </bs-progress>
+                    </div>
+                    </div>
+                    Total hours: {{courselist?.teachinghours + courselist?.planninghours}}
+                    <br> Group: {{courselist?.group}}
+                    <br> CourseID: {{courselist?.courseid}}
+                    <br> Pdi: {{courselist?.pdi}}
+                    <br> Course name: {{courselist?.coursename}}
+                    <br>
+                    <courselistmodal [courseid]="i" (ondelete)="deleteCourseSpring($event)"></courselistmodal>
+                </accordion-group>
+            </accordion>
+            <button type="button" (click)="addSpring()">Add course</button>
+        </tab>
+    </tabset>
 </div>
