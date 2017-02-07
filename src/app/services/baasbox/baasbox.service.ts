@@ -20,30 +20,43 @@ export class BaasBoxService {
 
 
     // Login user
-      login (username: string, password: string) {
+    login(username: string, password: string) {
         console.log("baasboxservice")
         let url = this.baseUrl + '/login'
         let body = {
-          "username": username,
-          "password": password,
-          "appcode": this.appcode
+            "username": username,
+            "password": password,
+            "appcode": this.appcode
         }
         return this.http.post(url, body).toPromise()
     }
 
     // Login test user
-      loginTest () {
+    loginTest() {
         let url = this.baseUrl + '/plugin/esatime.login'
         let body = {
-          "username": "user",
-          "password": "password",
-          "appcode": this.appcode
+            "username": "user",
+            "password": "password",
+            "appcode": this.appcode
         }
         return this.http.post(url, body).toPromise()
     }
 
+    // Logout user
+    logout() {
+        let url = this.baseUrl + '/logout'
+        console.log("loggin out")
+        return this.http.post(url, {}, { headers: this.getHeaders() }).toPromise()
+    }
+    // Method for getting the required headers for calls that need them
+    private getHeaders() {
+        return new Headers({
+            "X-BB-SESSION": localStorage.getItem('token'),
+            "X-BAASBOX-APPCODE": this.appcode
+        })
+
+    }
 
 
 
-
-  }
+}

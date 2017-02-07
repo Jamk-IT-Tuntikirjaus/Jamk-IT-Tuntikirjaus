@@ -10,16 +10,17 @@ import { BaasBoxService } from './../../services/baasbox';
 })
 export class LoginComponent {
     constructor(
-      private router: Router,
-      private baasBoxService: BaasBoxService) {
-      }
+        private router: Router,
+        private baasBoxService: BaasBoxService) {
+    }
 
     login(username: string, password: string) {
-      console.log("login component")
+        console.log("login component")
         this.baasBoxService.login(username, password)
             .then(response => {
                 // Get session token
                 let token = response.json().data['X-BB-SESSION']
+                localStorage.setItem("token", token)
                 // TODO: Possibly handle storing in a service
                 //localStorage.setItem("token", token)
                 //this.router.navigateByUrl('/status')
