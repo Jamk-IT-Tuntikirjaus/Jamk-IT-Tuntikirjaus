@@ -65,7 +65,6 @@ export class BaasBoxService {
     // Logout user
     logout() {
         let url = this.baseUrl + '/logout'
-        console.log("loggin out")
         return this.http.post(url, {}, { headers: this.getHeaders() }).toPromise()
     }
 

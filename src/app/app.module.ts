@@ -45,6 +45,7 @@ import {
 import { LoginComponent } from './home/login';
 import { CalendarComponent } from './calendar';
 import { CalendarViewComponent } from './template/calendarview';
+import { NavbarComponent } from './home/navbar';
 
 //Used Services
 import { BaasBoxService } from './services/baasbox';
@@ -87,6 +88,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     CalendarViewComponent,
     HammerTestComponent,
     CourselistComponent,
+    NavbarComponent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,

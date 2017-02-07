@@ -15,7 +15,6 @@ export class LoginComponent {
     }
 
     login(username: string, password: string) {
-        console.log("login component")
         this.baasBoxService.login(username, password)
             .then(response => {
                 // Get session token
@@ -24,7 +23,6 @@ export class LoginComponent {
                 // TODO: Possibly handle storing in a service
                 //localStorage.setItem("token", token)
                 //this.router.navigateByUrl('/status')
-                console.log("login succesful")
             })
             .catch(error => alert(error))
     }

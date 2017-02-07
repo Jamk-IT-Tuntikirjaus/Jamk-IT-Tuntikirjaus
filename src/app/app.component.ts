@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { AppState } from './app.service';
 
-import { BaasBoxService } from './services/baasbox';
 
 /*
  * App Component
@@ -16,35 +15,12 @@ import { BaasBoxService } from './services/baasbox';
  */
 @Component({
     selector: 'app',
-    providers: [BaasBoxService],
     encapsulation: ViewEncapsulation.None,
     styleUrls: [
         './app.component.css'
     ],
     template: `
-    <nav>
-      <div class="menu-mobile">
-        <button md-icon-button [mdMenuTriggerFor]="menu">
-          <md-icon>more_vert</md-icon>
-        </button>
-        <md-menu #menu="mdMenu">
-          <button md-menu-item [routerLink]=" ['./calendar'] " routerLinkActive="active"> Calendar </button>
-          <button md-menu-item [routerLink]=" ['./courselist']" routerLinkActive="active"> Course List </button>
-          <button md-menu-item (click)="logout()" [routerLink]=" ['./'] " routerLinkActive="active"> Log out </button>
-        </md-menu>
-      </div>
-      <div class="menu-desktop">
-        <a [routerLink]=" ['./calendar'] ">
-          Calendar
-        </a>
-        <a [routerLink]=" ['./courselist']">
-          Course List
-        </a>
-        <a (click)="logout()" [routerLink]=" ['./']" routerLinkActive="active">
-          Log Out
-        </a>
-      </div>
-    </nav>
+    <navbar></navbar>
     <main>
       <router-outlet></router-outlet>
     </main>
@@ -64,20 +40,11 @@ export class AppComponent implements OnInit {
 
     constructor(
         public appState: AppState,
-        private baasBoxService: BaasBoxService,
     ) { }
 
     public ngOnInit() {
         console.log('Initial App State', this.appState.state);
     }
-
-    logout() {
-        console.log("logging out")
-        try {
-            this.baasBoxService.logout()
-        } catch (error) { alert(error) };
-    }
-
 }
 
 /*
