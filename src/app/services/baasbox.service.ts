@@ -62,6 +62,17 @@ export class BaasBoxService {
         return this.http.post(url, body).toPromise()
     }
 
+    // Logout user
+    logout() {
+        let url = this.baseUrl + '/logout'
+        return this.http.post(url, {}, { headers: this.getHeaders() }).toPromise()
+    }
+
+    // Check that the user is logged in
+    checkLogin() {
+        let url = this.baseUrl + '/me'
+        return this.http.get(url, { headers: this.getHeaders() }).toPromise()
+    }
     // Login test user
     loginTest() {
         let url = this.baseUrl + '/login'
@@ -71,6 +82,14 @@ export class BaasBoxService {
             "appcode": this.appcode
         }
         return this.http.post(url, body).toPromise();
+    }
+
+    // Method for getting the required headers for calls that need them
+    private getHeaders() {
+        return new Headers({
+            "X-BB-SESSION": localStorage.getItem('token'),
+            "X-BAASBOX-APPCODE": this.appcode
+        })
 
     }
     sessionTest () {
@@ -82,17 +101,6 @@ export class BaasBoxService {
       }
     }
 
-    //BaasBox database commands
-
-    //Create Document -- CourseID, lectures and check times
-    CreateDocument (sessionID: string, data) {
-        let url = this.baseUrl + '/document/Test';
-        return this.http.post(url, data).toPromise();
-    }
-    getDocument (sessionID: string, documentID: string) {
-        let url = this.baseUrl + '/document/Test/' + documentID;
-        return this.http.get(url).toPromise();
-    }
     //Modify Document -- Gives new and possibly changed data inside document. User might destroy his data...
     //Delete Document -- Removes whole course from database!!! Maybe we should add a hide option instead?
 

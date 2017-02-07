@@ -1,19 +1,32 @@
 
+import { Component } from '@angular/core';//, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { Router } from '@angular/router';
+import { BaasBoxService } from './../../services/baasbox';
 
-    import { Component } from '@angular/core';//, ViewChild, ElementRef, Renderer } from '@angular/core';
-    //declare var JQuert:any;
+@Component({
+    selector: 'login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
+})
+export class LoginComponent {
+    constructor(
+        private router: Router,
+        private baasBoxService: BaasBoxService) {
+    }
 
-    @Component({
-      selector: 'login',
-      templateUrl: './login.component.html',
-      styleUrls: ['./login.component.css']
-    })
-    export class LoginComponent {
-      //@ViewChild('staticModal') login: ElementRef;
-      constructor(/*private http:Http*/) {
-
-      }
-      onSubmit(username: string, password: string) {
+    login(username: string, password: string) {
+        this.baasBoxService.login(username, password)
+            .then(response => {
+                // Get session token
+                let token = response.json().data['X-BB-SESSION']
+                localStorage.setItem("token", token)
+                // TODO: Possibly handle storing in a service
+                //localStorage.setItem("token", token)
+                //this.router.navigateByUrl('/status')
+            })
+            .catch(error => alert(error))
+    }
+    onSubmit(username: string, password: string) {
         alert("username: " + username);
         alert("password: " + password);
         //$('#staticModal').modal('hide');
@@ -24,6 +37,6 @@
         //this.login.nativeElement.hide();
         //this.renderer.setElementStyle(this.login.nativeElement, "display", "none");
 
-      }
-
     }
+
+}

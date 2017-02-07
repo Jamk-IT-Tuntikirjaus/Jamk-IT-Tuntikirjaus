@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { rxjs } from '/rxjs';
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import {
   NgModule,
@@ -41,13 +42,15 @@ import {
   ProgressbarModule
 } from 'ng2-bootstrap';
 
-//Komponentti sisään, muista declarata NgModule!
-
 //Projektissa käytettävät komponentit
 import { LoginComponent } from './home/login';
 import { CalendarComponent } from './calendar';
 import { CalendarViewComponent } from './template/calendarview';
 import { CourselistModalComponent } from './courselist/courselistmodal/'
+import { NavbarComponent } from './home/navbar';
+
+//Used Services
+import { BaasBoxService } from './services/baasbox';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -88,6 +91,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
     HammerTestComponent,
     CourselistComponent,
     CourselistModalComponent,
+    NavbarComponent,
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -103,6 +107,7 @@ export class MyHammerConfig extends HammerGestureConfig  {
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
+    BaasBoxService,
     {
       provide: HAMMER_GESTURE_CONFIG,
       useClass: MyHammerConfig
