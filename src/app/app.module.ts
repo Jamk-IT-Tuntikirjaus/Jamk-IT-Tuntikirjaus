@@ -29,7 +29,6 @@ import { AppState, InternalStateType } from './app.service';
 import { HomeComponent } from './home';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
-import { HammerTestComponent }   from './hammer-test';
 import { CourselistComponent } from './courselist';
 
 
@@ -88,7 +87,6 @@ export class MyHammerConfig extends HammerGestureConfig  {
     LoginComponent,
     CalendarComponent,
     CalendarViewComponent,
-    HammerTestComponent,
     CourselistComponent,
     CourselistModalComponent,
     NavbarComponent,

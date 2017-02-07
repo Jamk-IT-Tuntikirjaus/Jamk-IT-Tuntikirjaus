@@ -12,7 +12,9 @@ export class CourselistModalComponent {
 
     }
     public deleteCourse(): void {
-        console.log(this.courseid)
+        try {
         this.ondelete.emit(this.courseid)
+    }
+    catch(e) { console.error(e) }
     }
 }

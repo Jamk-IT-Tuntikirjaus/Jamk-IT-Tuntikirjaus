@@ -11,7 +11,6 @@ console.log('`Courselist` component loaded asynchronously');
 })
 export class CourselistComponent {
     name = "Courselist Component"
-    private iteration: number = 0;
     public type: string;
     public stacked: any[] = [];
     public asemester: any[] = [];
@@ -25,13 +24,14 @@ export class CourselistComponent {
         this.stackSpringSemester();
     }
     public stackAutumnSemester(): void {
+
+        let types = ['success', 'info', 'danger'];
+
+        let total = 0;
+        let n = 3;
+
         try {
-            let types = ['success', 'info', 'danger'];
-
-            let total = 0;
-            let n = 3;
-
-            for (let i = 0; i < this.asemester.length; i++){
+            for (let i = 0; i < this.asemester.length; i++) {
 
                 this.stacked = [];
                 //Check if there is overwork
@@ -54,48 +54,54 @@ export class CourselistComponent {
                 }
                 this.asemesterhours.push(this.stacked);
             }
-            throw "stackAutumnSemester error";
         }
-        catch(e) {
-            console.error(e);
-        }
+        catch (e) { console.error(e) }
     }
+
     public stackSpringSemester(): void {
         let types = ['success', 'info', 'danger'];
 
         let total = 0;
         let n = 3;
+        try {
+            for (let i = 0; i < this.ssemester.length; i++) {
 
-        for (let i = 0; i < this.ssemester.length; i++){
-
-            this.stacked = [];
-            if (this.ssemester[i].teachinghours + this.ssemester[i].planninghours > this.ssemester[i].max) {
-                this.ssemester[i].overworktime = (this.ssemester[i].teachinghours + this.ssemester[i].planninghours) - this.ssemester[i].max;
-                this.ssemester[i].max = this.ssemester[i].overworktime * 2 + this.ssemester[i].max;
+                this.stacked = [];
+                if (this.ssemester[i].teachinghours + this.ssemester[i].planninghours > this.ssemester[i].max) {
+                    this.ssemester[i].overworktime = (this.ssemester[i].teachinghours + this.ssemester[i].planninghours) - this.ssemester[i].max;
+                    this.ssemester[i].max = this.ssemester[i].overworktime * 2 + this.ssemester[i].max;
+                }
+                let value = [this.ssemester[i].teachinghours / this.ssemester[i].max * 100, this.ssemester[i].planninghours / this.ssemester[i].max * 100, this.ssemester[i].overworktime / this.ssemester[i].max * 100];
+                let hvalue = [this.ssemester[i].teachinghours, this.ssemester[i].planninghours, this.ssemester[i].overworktime];
+                for (let j = 0; j < n; j++) {
+                    total += value[j];
+                    let barvalue = value[j];
+                    let hourvalue = hvalue[j];
+                    let type = types[j];
+                    this.stacked.push({
+                        hourvalue,
+                        barvalue,
+                        type
+                    });
+                }
+                this.ssemesterhours.push(this.stacked);
             }
-            let value = [this.ssemester[i].teachinghours / this.ssemester[i].max * 100, this.ssemester[i].planninghours / this.ssemester[i].max * 100, this.ssemester[i].overworktime / this.ssemester[i].max * 100];
-            let hvalue = [this.ssemester[i].teachinghours, this.ssemester[i].planninghours, this.ssemester[i].overworktime];
-            for (let j = 0; j < n; j++) {
-                total += value[j];
-                let barvalue = value[j];
-                let hourvalue = hvalue[j];
-                let type = types[j];
-                this.stacked.push({
-                    hourvalue,
-                    barvalue,
-                    type
-                });
-            }
-            this.ssemesterhours.push(this.stacked);
         }
+        catch (e) { console.error(e) }
     }
 
     public deleteCourseAutumn(courseid: number): void {
-        this.asemester.splice(courseid, 1);
+        try {
+            this.asemester.splice(courseid, 1);
+        }
+        catch (e) { console.error(e) }
     }
 
     public deleteCourseSpring(courseid: number): void {
-        this.ssemester.splice(courseid, 1);
+        try {
+            this.ssemester.splice(courseid, 1);
+        }
+        catch (e) { console.error(e) }
     }
 
     //Mokkidatan lisäystä varten
@@ -115,7 +121,7 @@ export class CourselistComponent {
         let total = 0;
         let n = 3;
 
-        let i = this.asemester.length-1;
+        let i = this.asemester.length - 1;
         this.stacked = [];
         //Check if there is overwork
         if (this.asemester[i].teachinghours + this.asemester[i].planninghours > this.asemester[i].max) {
@@ -154,7 +160,7 @@ export class CourselistComponent {
 
         let total = 0;
         let n = 3;
-        let i = this.ssemester.length-1;
+        let i = this.ssemester.length - 1;
         this.stacked = [];
         if (this.ssemester[i].teachinghours + this.ssemester[i].planninghours > this.ssemester[i].max) {
             this.ssemester[i].overworktime = (this.ssemester[i].teachinghours + this.ssemester[i].planninghours) - this.ssemester[i].max;
@@ -178,28 +184,48 @@ export class CourselistComponent {
     private mokkidata(): void {
         this.courses = [];
         this.courses.push(
-        {
-            courseid: "ZZPP0500",
-            pdi: "7K0V7",
-            coursename: "Osaajana kehittyminen",
-            group: "IIO15S2",
-            teachinghours: 200,
-            planninghours: 100,
-            overworktime: 0,
-            max: 500
-        },
-        {
-            courseid: "IIO13100",
-            pdi: "7K0V1",
-            coursename: "JavaEE-ohjelmointi",
-            group: "IIO16S1",
-            teachinghours: 400,
-            planninghours: 250,
-            overworktime: 0,
-            max: 1000
-        });
-        for (let i = 0; i < this.courses.length; i++){
-            if (this.courses[i].pdi[1] == "S"){
+            {
+                courseid: "ZZPP0500",
+                pdi: "7S0V7",
+                coursename: "Osaajana kehittyminen",
+                group: "IIO15S2",
+                teachinghours: 200,
+                planninghours: 100,
+                overworktime: 0,
+                max: 500
+            },
+            {
+                courseid: "ZZPP0500",
+                pdi: "7S0V7",
+                coursename: "Osaajana kehittyminen",
+                group: "IIO15S2",
+                teachinghours: 200,
+                planninghours: 100,
+                overworktime: 0,
+                max: 500
+            },
+            {
+                courseid: "ZZPP0500",
+                pdi: "7K0V7",
+                coursename: "Osaajana kehittyminen",
+                group: "IIO15S2",
+                teachinghours: 200,
+                planninghours: 100,
+                overworktime: 0,
+                max: 500
+            },
+            {
+                courseid: "IIO13100",
+                pdi: "7K0V1",
+                coursename: "JavaEE-ohjelmointi",
+                group: "IIO16S1",
+                teachinghours: 400,
+                planninghours: 250,
+                overworktime: 0,
+                max: 1000
+            });
+        for (let i = 0; i < this.courses.length; i++) {
+            if (this.courses[i].pdi[1] == "S") {
                 this.asemester.push(this.courses[i]);
             }
             else this.ssemester.push(this.courses[i]);
