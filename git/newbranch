@@ -1,0 +1,10 @@
+echo "Creating a new branch with name $1 which is created from staging branch"
+
+creatingbranch() {
+echo "Creating branch with name $1"
+git checkout staging
+git branch -d $1
+git checkout -b $1
+}
+
+creatingbranch $1

@@ -1,0 +1,6 @@
+echo "Saving current data to git and change to branch $1 which is made from staging"
+cd
+cd Jamk-IT-Tuntikirjaus
+./git/push
+./git/newbranch $1
+git branch

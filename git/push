@@ -1,0 +1,9 @@
+echo "Pushing data to git in proper way?"
+
+git add *
+
+git pull
+
+git commit
+
+git push
