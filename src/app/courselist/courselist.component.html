@@ -20,7 +20,7 @@
                     <br> Pdi: {{courselist?.pdi}}
                     <br> Course name: {{courselist?.coursename}}
                     <br>
-                    <courselistmodal [courseid]="i" (ondelete)="deleteCourseAutumn($event)"></courselistmodal>
+                    <courselistmodal [courseid]="i" [coursename]="courselist?.coursename + ' ' + courselist?.group" (ondelete)="deleteCourseAutumn($event)"></courselistmodal>
                 </accordion-group>
             </accordion>
             <button type="button" (click)="addAutumn()">Add course</button>
@@ -30,13 +30,13 @@
                 <accordion-group #group *ngFor="let courselist of ssemester; let i = index">
                     <div class="nowrap" accordion-heading>
                         <div class="course-header">{{courselist?.group + " " + courselist?.courseid + "." + courselist?.pdi + " " + courselist?.coursename}}</div>
-                    <div style="display:block">
-                        <bs-progress>
-                            <bar *ngFor="let baz of ssemesterhours[i]" [value]="baz.barvalue" [type]="baz?.type">
-                                <span *ngIf="baz.barvalue > 5">{{baz?.hourvalue}}h</span>
-                            </bar>
-                        </bs-progress>
-                    </div>
+                        <div style="display:block">
+                            <bs-progress>
+                                <bar *ngFor="let baz of ssemesterhours[i]" [value]="baz.barvalue" [type]="baz?.type">
+                                    <span *ngIf="baz.barvalue > 5">{{baz?.hourvalue}}h</span>
+                                </bar>
+                            </bs-progress>
+                        </div>
                     </div>
                     Total hours: {{courselist?.teachinghours + courselist?.planninghours}}
                     <br> Group: {{courselist?.group}}
@@ -44,7 +44,7 @@
                     <br> Pdi: {{courselist?.pdi}}
                     <br> Course name: {{courselist?.coursename}}
                     <br>
-                    <courselistmodal [courseid]="i" (ondelete)="deleteCourseSpring($event)"></courselistmodal>
+                    <courselistmodal [courseid]="i" [coursename]="courselist?.coursename + ' ' + courselist?.group" (ondelete)="deleteCourseSpring($event)"></courselistmodal>
                 </accordion-group>
             </accordion>
             <button type="button" (click)="addSpring()">Add course</button>

@@ -1,9 +1,8 @@
 h1 {
-  color: #C2185B !important;
+    color: #C2185B !important;
 }
 
-.h1-main{
-    margin-left: 4px;
+.h1-main {
     margin-top: 10px;
 }
 
@@ -13,4 +12,16 @@ h1 {
 
 body {
     background-color: #FAFAFA !important;
+}
+
+.nav-tabs>li.active>a {}
+
+.nav-tabs>li.active>a>span {
+    color: #388E3C;
+}
+
+.nav-tabs>li>a {}
+
+.nav-tabs>li>a>span {
+    color: #D32F2F;
 }

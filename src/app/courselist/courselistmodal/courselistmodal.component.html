@@ -1,14 +1,14 @@
-<button type="button" class="btn btn-trashcan" (click)="smModal.show()"><i class="glyphicon glyphicon-trash"></i></button>
+<button type="button" class="btn btn-red" (click)="smModal.show()"><i class="glyphicon glyphicon-trash"></i></button>
 <div bsModal #smModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title pull-left">Are you sure you want to delete this course?</h4>
-      </div>
-      <div class="modal-body">
-        <button type="button"  (click)="smModal.hide(); deleteCourse()">Yes</button>
-        <button type="button" class="close pull-right" aria-label="Cancel" (click)="smModal.hide()">Cancel</button>
-      </div>
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Are you sure you want to delete <br> {{coursename}}?</h4>
+            </div>
+            <div class="modal-body">
+                <button type="button" class="btn btn-green" (click)="smModal.hide(); deleteCourse()">Yes</button>
+                <button type="button" class="btn btn-red pull-right" aria-label="Cancel" (click)="smModal.hide()">Cancel</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
