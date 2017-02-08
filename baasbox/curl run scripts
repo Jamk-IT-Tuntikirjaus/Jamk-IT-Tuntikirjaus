@@ -1,6 +1,6 @@
 #To run this file, please install jq first with 'sudo apt install jq'
 
-echo Login script
+echo Default login
 echo - save id from it  to alias named file
 echo - read id from alias file
 curl -s http://0.0.0.0:9000/login \
@@ -12,31 +12,40 @@ echo "Session id saved in alias $(cat alias)"
 #Creating id alias
 bb_id="$(cat alias)"
 rm alias
-
-echo Testaa omaa login scriptia...
-curl -s -X POST --data "user=user&passwd=password" http://0.0.0.0:9000/plugin/esatime.login -H X-BB-SESSION:$(echo $bb_id) | jq -r ".result, .message"
-
-echo Create document script
-curl -s \
-http://0.0.0.0:9000/plugin/esatime.document.new \
--X POST -d '{"collection":"Test", "data": {"Heello": "Hey", "Hoo": "Huu"}}' \
+echo
+echo Testaa esatime.register scriptia...
+curl -s -X POST -d '{ "username": "user4", "password": "pass"}' \
+http://0.0.0.0:9000/plugin/esatime.register \
 -H "Content-Type: application/json" \
--H X-BB-SESSION:$(echo $bb_id) | jq -r ".result, .message"
-
-echo Modify document script
-curl -s \
-http://0.0.0.0:9000/plugin/esatime.document.modify \
--X POST -d '{"collection":"Test", "id": "1e5614e9-90eb-449c-8af7-f8ba8e495a7d", "data": {"Hoo": "Huu"}}' \
--H "Content-Type: application/json" \
--H X-BB-SESSION:$bb_id | jq -r ".result, .message"
-
+-H X-BB-SESSION:$(echo $bb_id) | jq -r ".result, .message, .data"
+echo
+echo Testaa esatime.login scriptia...
+curl -s -X POST --data "username=user4&password=pass" \
+http://0.0.0.0:9000/plugin/esatime.login \
+-H X-BB-SESSION:$(echo $bb_id) | jq -r ".result, .message, .data"
+echo
+#echo Create document script, status, message and document id
+#curl -s \
+#http://0.0.0.0:9000/plugin/esatime.document.new \
+#-X POST -d '{"collection":"Test", "data": {"Heello": "Hey", "Hoo": "Huu"}}' \
+#-H "Content-Type: application/json" \
+#-H X-BB-SESSION:$(echo $bb_id) | jq -r ".result, .message, .data.id"
+echo
+#echo Modify document script
+#curl -s \
+#http://0.0.0.0:9000/plugin/esatime.document.modify \
+#-X POST -d '{"collection":"Test", "id": "1e5614e9-90eb-449c-8af7-f8ba8e495a7d", "data": {"Hoo": #"Huu"}}' \
+#-H "Content-Type: application/json" \
+#-H X-BB-SESSION:$bb_id | jq -r ".result, .message"
+echo
 echo Find document script
 curl -s \
 http://0.0.0.0:9000/plugin/esatime.document.find \
--X POST -d '{"collection":"Test", "id": "1e5614e9-90eb-449c-8af7-f8ba8e495a7d", "data": {"Hoo": "Huu"}}' \
+-X POST -d '{"collection":"User", "id": "a9256af2-7dc8-4fa9-9a7b-620c03040e5f"}' \
 -H "Content-Type: application/json" \
--H X-BB-SESSION:$bb_id | jq -r ".result, .message"
+-H X-BB-SESSION:$bb_id | jq -r ".result, .message, .data"
 
-
-
-
+#Little something extra!
+echo
+echo -------$(echo "$(date +'%H:%M:%S')")--------
+echo
